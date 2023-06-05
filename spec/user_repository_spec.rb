@@ -1,4 +1,4 @@
-require_relative '../lib/repositories/UserRepository'
+require_relative '../lib/repositories/user_repository'
 require_relative 'database_helper'
 
 RSpec.describe UserRepository do

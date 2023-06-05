@@ -7,7 +7,7 @@ DatabaseConnection.connect
 class Application < Sinatra::Base
   configure :development do
     register Sinatra::Reloader
-    also_reload 'lib/repositories/UserRepository'
+    also_reload 'lib/repositories/user_repository'
   end
 
   configure do
