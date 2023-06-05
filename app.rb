@@ -1,6 +1,7 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
 require_relative 'lib/database_connection'
+require_relative 'routes/users'
 
 DatabaseConnection.connect
 
@@ -15,6 +16,8 @@ class Application < Sinatra::Base
     set :session_secret, "5cdde102f6f68294e1cff23f341aaaaf2d2725453eaccc8ebc239629e724fc53"
   end
 
+  use Users
+  
   get '/' do
     return erb(:index)
   end
