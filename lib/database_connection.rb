@@ -12,14 +12,13 @@ class DatabaseConnection
   using Rainbow
 
   def self.connect
-    
-    puts "Connecting to database `#{database_name}`...".blue unless test_mode?
     if ENV['ENV'] == 'test'
       database_name = 'makersbnb_test'
     else
       database_name = 'makersbnb'
     end
     @database_name = database_name
+    puts "Connecting to database `#{database_name}`...".blue unless test_mode?
     if test_mode? && !database_name.end_with?("_test")
       puts "Refusing to connect to the dev database in test mode.".red
       puts "For your safety, when the tests are running this class will refuse"
