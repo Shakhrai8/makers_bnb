@@ -1,0 +1,149 @@
+/* Global Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  background-image: url("/images/image1.jpg"); /* Set the background image */
+  background-repeat: no-repeat;
+  background-size: cover;
+  color: #333; /* Dark text color */
+}
+
+/* Main Styles */
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh; /* Use min-height instead of height for responsiveness */
+  background-color: transparent; /* Set the background color to transparent */
+  color: #333;
+}
+
+.content {
+  text-align: center;
+  z-index: 1;
+}
+
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.heading {
+  font-size: 36px;
+  margin: 0;
+}
+
+.logout-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #007bff; /* Blue button color */
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.logout-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.05);
+}
+
+.profile-box {
+  /* Add styles for the profile box here */
+  padding: 20px;
+  border: 2px solid #007bff; /* Blue border */
+  border-radius: 10px;
+  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
+
+.profile-info {
+  text-align: left;
+  margin-bottom: 20px;
+  padding: 20px;
+}
+
+.info-heading {
+  font-size: 24px;
+  margin: 0;
+}
+
+.info-text {
+  margin: 10px 0;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+
+.spaces-button,
+.bookings-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #007bff; /* Blue button color */
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  text-decoration: none;
+  margin-right: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.spaces-button:hover,
+.bookings-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.05);
+}
+
+.boxes {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start;
+}
+
+.spaces-box,
+.bookings-box {
+  width: 400px;
+  padding: 20px;
+  margin: 20px;
+  background-color: #fff;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+}
+
+.box-heading {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+.create-button {
+  display: inline-block;
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #007bff; /* Blue button color */
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  text-decoration: none;
+  margin-top: 20px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.create-button:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.05);
+}

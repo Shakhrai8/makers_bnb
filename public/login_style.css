@@ -1,0 +1,142 @@
+/* Global Styles */
+body {
+  font-family: 'Roboto', sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #0e0e0e;
+  color: #fff;
+}
+
+/* Main Styles */
+.container {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-size: cover;
+  background-position: center;
+  color: #fff;
+  overflow: hidden; /* Hide overflowing elements */
+  animation: slideshow 40s infinite; /* Change images every 20 seconds */
+}
+
+@keyframes slideshow {
+  0%, 19.99% {
+    background-image: url(/images/image1.jpg); /* Change to the path of your first image */
+  }
+  20%, 39.99% {
+    background-image: url(/images/image2.jpg); /* Change to the path of your second image */
+  }
+  40%, 59.99% {
+    background-image: url(/images/image3.jpg); /* Change to the path of your third image */
+  }
+  60%, 79.99% {
+    background-image: url(/images/image4.jpg); /* Change to the path of your fourth image */
+  }
+  80%, 99.99% {
+    background-image: url(/images/image5.jpg); /* Change to the path of your fifth image */
+  }
+}
+
+.overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5); /* Adjust the transparency here */
+}
+
+.content {
+  text-align: center;
+  z-index: 1;
+}
+
+.heading {
+  font-size: 36px;
+  margin-bottom: 10px;
+  animation: fade-in 3s ease-out;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.login-form {
+  margin-top: 20px;
+}
+
+.login-form input {
+  display: block;
+  width: 300px;
+  padding: 10px;
+  margin: 10px auto;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+}
+
+.login-form input[type="submit"] {
+  display: block;
+  width: 200px;
+  padding: 10px;
+  margin: 20px auto;
+  font-size: 18px;
+  background-color: #1e7ea8;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.login-form input[type="submit"]:hover {
+  background-color: #0e5d80;
+  transform: scale(1.05); /* Add a slight scaling effect on hover */
+}
+
+/* Additional Visual Enhancements */
+.container:before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border: 2px solid #29abe0; /* Add a border around the container */
+  pointer-events: none; /* Ensure the border doesn't affect interactivity */
+}
+
+.container:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(#000000 10%, transparent 60%); /* Add a radial gradient overlay */
+  opacity: 0.2; /* Adjust the opacity of the overlay */
+  pointer-events: none;
+}
+
+/* Animations */
+.login-form input[type="submit"] {
+  animation: pulse 2s infinite alternate; /* Add a pulsing animation */
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
+}
