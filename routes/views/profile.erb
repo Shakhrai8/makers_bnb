@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MAKERS BnB - My Profile</title>
+  <link rel="stylesheet" type="text/css" href="/profile_style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="content">
+      <div class="header">
+        <h1 class="heading">My Profile</h1>
+        <a href="/logout" class="logout-button">Log Out</a>
+      </div>
+      <div class="profile-box"> <!-- Added profile-box class -->
+        <div class="profile-info">
+          <h2 class="info-heading">Welcome, <%= @user.username %></h2>
+          <p class="info-text">Email: <%= @user.email %></p>
+        </div>
+        <div class="buttons">
+          <a href="/spaces" class="spaces-button">View My Spaces</a>
+          <a href="/bookings" class="bookings-button">View My Bookings</a>
+        </div>
+        <div class="boxes">
+          <div class="spaces-box">
+            <h2 class="box-heading">My Spaces</h2>
+            <a href="/spaces/new" class="create-button">Create New</a>
+          </div>
+          <div class="bookings-box">
+            <h2 class="box-heading">My Bookings</h2>
+            <a href="/bookings/new" class="create-button">Create New</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
