@@ -18,4 +18,8 @@ class Application < Sinatra::Base
   get '/' do
     return erb(:index)
   end
+
+  get '/about' do
+    return erb(:about)
+  end
 end

@@ -134,7 +134,8 @@ main {
 }
 
 .signup-button,
-.login-button {
+.login-button,
+.about-button {
   display: inline-block;
   padding: 10px 20px;
   font-size: 18px;
@@ -149,7 +150,8 @@ main {
 }
 
 .signup-button:hover,
-.login-button:hover {
+.login-button:hover,
+.about-button:hover {
   background-color: #0e5d80;
   transform: scale(1.05); /* Add a slight scaling effect on hover */
 }
@@ -189,14 +191,16 @@ main {
   }
 
   .signup-button,
-  .login-button {
+  .login-button,
+  .about-button {
     margin-bottom: 10px;
   }
 }
 
 /* Animations */
 .signup-button,
-.login-button {
+.login-button,
+.about-button {
   animation: pulse 2s infinite alternate; /* Add a pulsing animation */
 }
 
