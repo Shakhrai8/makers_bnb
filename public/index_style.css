@@ -1,4 +1,4 @@
-/* styles.css */
+/* Global Styles */
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
@@ -7,6 +7,7 @@ body {
   color: #fff;
 }
 
+/* Header Styles */
 header {
   background-image: linear-gradient(90deg, #29abe0, #1e7ea8);
   padding: 20px;
@@ -18,6 +19,7 @@ h1 {
   margin-bottom: 10px;
 }
 
+/* Main Styles */
 main {
   display: flex;
   justify-content: center;
@@ -28,59 +30,6 @@ main {
 .feed-container {
   width: 800px;
   margin: 20px;
-}
-
-.peep {
-  background-color: #222;
-  border-radius: 10px;
-  padding: 20px;
-  margin-bottom: 20px;
-}
-
-.author-info {
-  margin-bottom: 10px;
-}
-
-.user-info {
-  cursor: pointer;
-  text-decoration: underline;
-}
-
-.peep-content {
-  margin-bottom: 10px;
-}
-
-.peep-meta {
-  display: flex;
-  align-items: center;
-  margin-bottom: 10px;
-}
-
-.tag {
-  background-color: #1e7ea8;
-  color: #fff;
-  padding: 5px 10px;
-  border-radius: 5px;
-  margin-right: 10px;
-}
-
-.replies {
-  margin-left: 40px;
-}
-
-.reply {
-  background-color: #333;
-  border-radius: 10px;
-  padding: 10px;
-  margin-bottom: 10px;
-}
-
-.reply-meta {
-  margin-top: 10px;
-}
-
-.reply-form {
-  margin-top: 20px;
 }
 
 /* Additional Cyberpunk Styling */
@@ -104,10 +53,29 @@ main {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-image: url(https://media.cntraveler.com/photos/5de7dbee45a09000087e427f/3:2/w_2250,h_1500,c_limit/airbnb-9232684-los-angeles.jpg);
   background-size: cover;
   background-position: center;
   color: #fff;
+  overflow: hidden; /* Hide overflowing elements */
+  animation: slideshow 40s infinite; /* Change images every 20 seconds */
+}
+
+@keyframes slideshow {
+  0%, 19.99% {
+    background-image: url(/images/image1.jpg); /* Change to the path of your first image */
+  }
+  20%, 39.99% {
+    background-image: url(/images/image2.jpg); /* Change to the path of your second image */
+  }
+  40%, 59.99% {
+    background-image: url(/images/image3.jpg); /* Change to the path of your third image */
+  }
+  60%, 79.99% {
+    background-image: url(/images/image4.jpg); /* Change to the path of your fourth image */
+  }
+  80%, 99.99% {
+    background-image: url(/images/image5.jpg); /* Change to the path of your fifth image */
+  }
 }
 
 .overlay {
@@ -127,17 +95,42 @@ main {
 .heading {
   font-size: 36px;
   margin-bottom: 10px;
+  animation: fade-in 3s ease-out;
+}
+
+@keyframes fade-in {
+  0% {
+    opacity: 0;
+    transform: translateY(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateY(0);
+  }
 }
 
 .tagline {
   font-size: 20px;
   margin-bottom: 30px;
+  animation: slide-in 3s ease-out;
+}
+
+@keyframes slide-in {
+  0% {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  100% {
+    opacity: 1;
+    transform: translateX(0);
+  }
 }
 
 .buttons {
   display: flex;
   justify-content: center;
   align-items: center;
+  margin-top: 20px;
 }
 
 .signup-button,
@@ -152,9 +145,66 @@ main {
   text-decoration: none;
   margin-right: 10px;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
 .signup-button:hover,
 .login-button:hover {
   background-color: #0e5d80;
+  transform: scale(1.05); /* Add a slight scaling effect on hover */
+}
+
+/* Additional Visual Enhancements */
+.container:before {
+  content: '';
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  right: -10px;
+  bottom: -10px;
+  border: 2px solid #29abe0; /* Add a border around the container */
+  pointer-events: none; /* Ensure the border doesn't affect interactivity */
+}
+
+.container:after {
+  content: '';
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(#000000 10%, transparent 60%); /* Add a radial gradient overlay */
+  opacity: 0.2; /* Adjust the opacity of the overlay */
+  pointer-events: none;
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .feed-container {
+    width: 100%;
+    margin: 10px;
+  }
+
+  .buttons {
+    flex-direction: column;
+    margin-top: 10px;
+  }
+
+  .signup-button,
+  .login-button {
+    margin-bottom: 10px;
+  }
+}
+
+/* Animations */
+.signup-button,
+.login-button {
+  animation: pulse 2s infinite alternate; /* Add a pulsing animation */
+}
+
+@keyframes pulse {
+  0% {
+    transform: scale(1);
+  }
+  100% {
+    transform: scale(1.05);
+  }
 }
