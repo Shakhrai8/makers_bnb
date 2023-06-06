@@ -17,6 +17,13 @@ class SpacesRepository
     return spaces
     end 
 
+    def self.find(id)
+    query = "SELECT * FROM spaces WHERE id = $1;"
+    result = DatabaseConnection.exec_params(query, [id])
+
+    return find_helper(result)
+  end
+
     private
 
   def self.all_helper(inst)
@@ -51,9 +58,6 @@ class SpacesRepository
 
     return space
   end
-
-    def self.find(id)
-    end
 
 
 end

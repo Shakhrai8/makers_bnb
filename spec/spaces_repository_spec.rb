@@ -7,11 +7,11 @@ RSpec.describe SpacesRepository do
   end
 
     context '.all' do
-        xit 'displays all(spacess' do
+        it 'displays all spaces' do
         spaces = SpacesRepository.all
 
             expect(spaces.length).to eq(2)
-            expect(result).to include('London Plaza')
+            expect(spaces[0].name).to eq('London Plaza')
         end
     end
 
@@ -29,10 +29,10 @@ RSpec.describe SpacesRepository do
     end
 
     context '.find' do
-        xit 'finds a single listing by id' do
-            SpacesRepository.find(2)
+        it 'finds a single listing by id' do
+            spaces = SpacesRepository.find(2)
 
-            expect(spaces.name).to eq('paris cottage')
+            expect(spaces.name).to eq('Paris Cottage')
         end
     end
 end
