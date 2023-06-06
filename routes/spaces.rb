@@ -27,7 +27,7 @@ class Spaces < Sinatra::Base
 
         SpacesRepository.create(@space.name, @space.city, @space.description, @space.price, @space.start_date, @space.end_date, @space.user_id)
 
-        erb :space
+        erb: space
     else
         redirect '/login'
     end
@@ -55,6 +55,15 @@ class Spaces < Sinatra::Base
         end
     else
         redirect '/login'
+    end
+  end
+
+  get '/space/:space_id' do
+    if logged_in?
+      space_id = params[:space_id].to_i
+      space = SpacesRepository.find(space_id)
+    else
+      redirect '/profile'
     end
   end
 
