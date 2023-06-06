@@ -62,6 +62,8 @@ class Spaces < Sinatra::Base
     if logged_in?
       space_id = params[:space_id].to_i
       space = SpacesRepository.find(space_id)
+
+      erb: space, locals: {space: space}
     else
       redirect '/profile'
     end
