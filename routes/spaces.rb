@@ -16,15 +16,16 @@ class Spaces < Sinatra::Base
 
   post '/new_space' do
     if logged_in?
-        name = params[:name]
-        city = params[:city]
-        description = params[:description]
-        price = params[:price]
-        start_date = params[:start_date]
-        end_date = params[:end_date]
-        user_id = session[:user_id]
+      @space = Space.new
+        @space.name = params[:name]
+        @space.city = params[:city]
+        @space.description = params[:description]
+        @space.price = params[:price]
+        @space.start_date = params[:start_date]
+        @space.end_date = params[:end_date]
+        @space.user_id = session[:user_id]
 
-        SpacesRepository.create(name, city, description, price, start_date, end_date, user_id)
+        SpacesRepository.create(@space.name, @space.city, @space.description, @space.price, @space.start_date, @space.end_date, @space.user_id)
 
         erb :space
     else
@@ -56,6 +57,7 @@ class Spaces < Sinatra::Base
         redirect '/login'
     end
   end
+
 
   delete '/:space_id/delete' do 
     if logged_in?
