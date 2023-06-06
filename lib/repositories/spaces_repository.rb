@@ -8,21 +8,36 @@ class SpacesRepository
     end
 
     def self.all
-        spaces = []
-        query = "SELECT * FROM spaces;"
-    result = DatabaseConnection.exec_params(query, [])
-    result.each do |inst|
-      spaces << all_helper(inst)
-    end
-    return spaces
+      spaces = []
+      query = "SELECT * FROM spaces;"
+      result = DatabaseConnection.exec_params(query, [])
+      result.each do |inst|
+        spaces << all_helper(inst)
+      end
+      return spaces
     end 
 
     def self.find(id)
-    query = "SELECT * FROM spaces WHERE id = $1;"
-    result = DatabaseConnection.exec_params(query, [id])
+      query = "SELECT * FROM spaces WHERE id = $1;"
+      result = DatabaseConnection.exec_params(query, [id])
 
-    return find_helper(result)
-  end
+      return find_helper(result)
+    end
+
+    def self.update(spaces)
+      query = "UPDATE spaces SET name = $1, city = $2, description = $3, price = $4, start_date = $5, end_date = $6, updated_at = NOW() WHERE id = $7;"
+      params = [spaces.name, spaces.city, spaces.description, spaces.price, spaces.start_date, spaces.end_date, spaces.id]
+      result = DatabaseConnection.exec_params(query, params)
+
+      return nil
+    end
+
+    def self.delete(id)
+      query = "DELETE FROM spaces WHERE id = $1"
+      result = DatabaseConnection.exec_params(query, [id])
+
+      return nil
+    end
 
     private
 

@@ -35,6 +35,39 @@ RSpec.describe SpacesRepository do
             expect(spaces.name).to eq('Paris Cottage')
         end
     end
+
+    context '.update' do
+        it 'updates a single listing by id' do
+            spaces = Space.new
+            spaces.name = 'Berlin Plaza'
+            spaces.city = 'Berlin'
+            spaces.description = '1 bedroom'
+            spaces.price = 99.00
+            spaces.start_date = '2024-06-06'
+            spaces.end_date = '2024-07-07'
+            spaces.id = 1
+            SpacesRepository.update(spaces)
+            
+            new_spaces = SpacesRepository.find(1)
+
+            expect(new_spaces.name).to eq('Berlin Plaza')
+
+            
+        end
+    end
+
+    context '.delete' do
+        it 'deletes a single listing by id' do
+            
+            SpacesRepository.delete(1)
+            list = SpacesRepository.all
+
+
+            expect(list.length).to eq(1)
+            expect(list.last.name).to eq('Paris Cottage')
+            
+        end
+    end
 end
 
     
