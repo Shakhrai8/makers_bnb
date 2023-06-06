@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MAKERS BnB - Space</title>
+  <link rel="stylesheet" type="text/css" href="/profile_style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="content">
+      <div class="header">
+        <h1 class="heading">Space Details</h1>
+        <a href="/logout" class="logout-button">Log Out</a>
+      </div>
+      <div class="profile-box">
+        <h2 class="info-heading"><%= @space.name %></h2>
+        <p class="info-text">City: <%= @space.city %></p>
+        <p class="info-text">Description: <%= @space.description %></p>
+        <p class="info-text">Price: <%= @space.price %></p>
+        <p class="info-text">Start Date: <%= @space.start_date %></p>
+        <p class="info-text">End Date: <%= @space.end_date %></p>
+      </div>
+    </div>
+  </div>
+</body>
+</html>

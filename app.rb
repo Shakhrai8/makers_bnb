@@ -2,6 +2,7 @@ require 'sinatra/base'
 require 'sinatra/reloader'
 require_relative 'lib/database_connection'
 require_relative 'routes/users'
+require_relative 'routes/spaces'
 
 DatabaseConnection.connect
 
@@ -17,6 +18,7 @@ class Application < Sinatra::Base
   end
 
   use Users
+  use Spaces
   
   get '/' do
     return erb(:index)

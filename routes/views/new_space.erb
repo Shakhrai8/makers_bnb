@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MAKERS BnB - New Space</title>
+  <link rel="stylesheet" type="text/css" href="/profile_style.css">
+</head>
+<body>
+  <div class="container">
+    <div class="content">
+      <div class="header">
+        <h1 class="heading">New Space</h1>
+        <a href="/logout" class="logout-button">Log Out</a>
+      </div>
+      <div class="profile-box">
+        <form action="/new_space" method="post">
+          <label for="name">Name:</label>
+          <input type="text" id="name" name="name" required>
+
+          <label for="city">City:</label>
+          <input type="text" id="city" name="city" required>
+
+          <label for="description">Description:</label>
+          <textarea id="description" name="description" required></textarea>
+
+          <label for="price">Price:</label>
+          <input type="number" id="price" name="price" required>
+
+          <label for="start_date">Start Date:</label>
+          <input type="date" id="start_date" name="start_date" required>
+
+          <label for="end_date">End Date:</label>
+          <input type="date" id="end_date" name="end_date" required>
+
+          <input type="submit" value="Create" class="create-button">
+        </form>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
