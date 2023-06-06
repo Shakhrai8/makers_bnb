@@ -6,87 +6,88 @@ class Spaces < Sinatra::Base
   enable :sessions
   set :session_secret, "5cdde102f6f68294e1cff23f341aaaaf2d2725453eaccc8ebc239629e724fc53"
 
-  get '/new_space' do 
-    if logged_in?
-        erb :new_space
-    else
-        redirect '/login'
-    end 
+  get '/new_space' do
+    redirect '/login' unless logged_in?
+
+    erb :new_space
   end
 
   post '/new_space' do
-    if logged_in?
-      @space = Space.new
-        @space.name = params[:name]
-        @space.city = params[:city]
-        @space.description = params[:description]
-        @space.price = params[:price]
-        @space.start_date = params[:start_date]
-        @space.end_date = params[:end_date]
-        @space.user_id = session[:user_id]
+    redirect '/login' unless logged_in?
 
-        SpacesRepository.create(@space.name, @space.city, @space.description, @space.price, @space.start_date, @space.end_date, @space.user_id)
+    space = Space.new
+    space.name = params[:name]
+    space.city = params[:city]
+    space.description = params[:description]
+    space.price = params[:price]
+    space.start_date = params[:start_date]
+    space.end_date = params[:end_date]
+    space.user_id = session[:user_id]
 
-        erb: space
-    else
-        redirect '/login'
-    end
-  end
+    SpacesRepository.create(
+      space.name, space.city, space.description, space.price,
+      space.start_date, space.end_date, space.user_id
+    )
 
-  get '/:space_id/update' do
-    if logged_in?
-        space_id = params[:space_id].to_i
-        space = SpacesRepository.find(space_id)
-
-        if space
-            name = params[:name]
-            city = params[:city]
-            description = params[:description]
-            price = params[:price]
-            start_date = params[:start_date]
-            end_date = params[:end_date]
-            user_id = session[:user_id]
-
-            SpacesRepository.update(name, city, description, price, start_date, end_date, user_id)
-
-            redirect '/:space_id'
-        else
-            redirect '/profile'
-        end
-    else
-        redirect '/login'
-    end
+    redirect "/space/#{SpacesRepository.all.last.id}"
   end
 
   get '/space/:space_id' do
-    if logged_in?
-      space_id = params[:space_id].to_i
-      space = SpacesRepository.find(space_id)
+    redirect '/profile' unless logged_in?
 
-      erb: space, locals: {space: space}
-    else
-      redirect '/profile'
-    end
+    space_id = params[:space_id].to_i
+    @space = SpacesRepository.find(space_id)
+
+    erb :space
   end
 
-
-  delete '/:space_id/delete' do 
-    if logged_in?
-      space_id = params[:space_id].to_i
-      SpacesRepository.delete(space_id)
-      redirect '/profile'
-    else 
-        redirect '/login'
-    end 
-  end 
+  get '/space/:space_id/edit' do
+    redirect '/login' unless logged_in?
   
+    space_id = params[:space_id].to_i
+    space = SpacesRepository.find(space_id)
+  
+    #redirect "/space/#{space_id}/edit" unless space && space.user_id == session[:user_id]
+  
+    erb :update_space, locals: { space: space }
+  end
+
+  patch '/space/:space_id/edit' do
+    redirect '/login' unless logged_in?
+
+    space_id = params[:space_id].to_i
+    space = SpacesRepository.find(space_id)
+
+    #redirect '/profile' unless space && space.user_id == session[:user_id]
+
+    space.name = params[:name]
+    space.city = params[:city]
+    space.description = params[:description]
+    space.price = params[:price]
+    space.start_date = params[:start_date]
+    space.end_date = params[:end_date]
+
+    SpacesRepository.update(space)
+
+    redirect "/space/#{space_id}"
+  end
+
+  delete '/space/:space_id' do
+    redirect '/login' unless logged_in?
+
+    space_id = params[:space_id].to_i
+    space = SpacesRepository.find(space_id)
+
+    #redirect '/profile' unless space && space.user_id == session[:user_id]
+
+    SpacesRepository.delete(space_id)
+
+    redirect '/profile'
+  end
+
   private
 
   def logged_in?
     !session[:user_id].nil?
-  end
-
-  def current_user
-    UserRepository.find(session[:user_id])
   end
 end

@@ -1,13 +1,5 @@
 /* Global Styles */
-body {
-  font-family: 'Roboto', sans-serif;
-  font-size: 16px;
-  line-height: 1.5;
-  background-image: url("/images/image1.jpg");
-  background-repeat: no-repeat;
-  background-size: cover;
-  color: #333;
-}
+/* Add any global styles here */
 
 /* Main Styles */
 .container {
@@ -56,7 +48,7 @@ body {
   transform: scale(1.05);
 }
 
-.profile-box {
+.space-info-box {
   padding: 20px;
   border: 2px solid #007bff;
   border-radius: 10px;
@@ -71,4 +63,39 @@ body {
 
 .info-text {
   margin: 10px 0;
+}
+
+/* Edit Button Styles */
+.edit-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #28a745;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.edit-button:hover {
+  background-color: #218838;
+  transform: scale(1.05);
+}
+
+/* Delete Button Styles */
+.delete-button {
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #dc3545;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.delete-button:hover {
+  background-color: #c82333;
+  transform: scale(1.05);
 }

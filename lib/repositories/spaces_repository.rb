@@ -70,7 +70,7 @@ class SpacesRepository
     space.user_id = result[0]['user_id']
     space.created_at = result[0]['created_at'] 
     space.updated_at = result[0]['updated_at']
-
+    
     return space
   end
 

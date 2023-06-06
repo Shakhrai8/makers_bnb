@@ -2,17 +2,18 @@
 <html>
 <head>
   <title>MAKERS BnB - New Space</title>
-  <link rel="stylesheet" type="text/css" href="/profile_style.css">
+  <link rel="stylesheet" type="text/css" href="/new_space_style.css">
+  <link rel="stylesheet" type="text/css" href="/back_button_style.css">
 </head>
 <body>
   <div class="container">
     <div class="content">
       <div class="header">
-        <h1 class="heading">New Space</h1>
-        <a href="/logout" class="logout-button">Log Out</a>
+        <h1 class="heading">Create a New Space</h1>
+        <a href="/Profile" class="back-button">Back to Profile</a>
       </div>
-      <div class="profile-box">
-        <form action="/new_space" method="post">
+      <div class="new-space-box">
+        <form action="/new_space" method="POST">
           <label for="name">Name:</label>
           <input type="text" id="name" name="name" required>
 
@@ -31,7 +32,7 @@
           <label for="end_date">End Date:</label>
           <input type="date" id="end_date" name="end_date" required>
 
-          <input type="submit" value="Create" class="create-button">
+          <input type="submit" value="Create Space" class="create-button">
         </form>
       </div>
     </div>

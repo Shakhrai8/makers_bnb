@@ -1,28 +1,35 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>MAKERS BnB - Space</title>
-  <link rel="stylesheet" type="text/css" href="/profile_style.css">
+  <title>MAKERS BnB - <%= @space.name %></title>
+  <link rel="stylesheet" type="text/css" href="/space_style.css">
   <link rel="stylesheet" type="text/css" href="/back_button_style.css">
-
 </head>
 <body>
   <div class="container">
     <div class="content">
       <div class="header">
-        <h1 class="heading">Space Details</h1>
-        <a href="/profile" class="back-button">Back to Profile</a>
+        <h1 class="heading"><%= @space.name %></h1>
+        <a href="/Profile" class="back-button">Back to Profile</a>
       </div>
-      <div class="profile-box">
-        <h2 class="info-heading"><%= space.name %></h2>
-        <p class="info-text">City: <%= space.city %></p>
-        <p class="info-text">Description: <%= space.description %></p>
-        <p class="info-text">Price: <%= space.price %></p>
-        <p class="info-text">Start Date: <%= space.start_date %></p>
-        <p class="info-text">End Date: <%= space.end_date %></p>
+      <div class="space-info-box">
+        <h2 class="info-heading">Description:</h2>
+        <p class="info-text"><%= @space.description %></p>
+        <h2 class="info-heading">Price:</h2>
+        <p class="info-text">$<%= @space.price %></p>
+        <h2 class="info-heading">Availability:</h2>
+        <p class="info-text">Start Date: <%= @space.start_date %></p>
+        <p class="info-text">End Date: <%= @space.end_date %></p>
+
+        <!-- Edit button -->
+        <a href="/space/<%= @space.id %>/edit" class="edit-button">Edit</a>
+
+        <!-- Delete button -->
+        <form action="/space/<%= @space.id %>/delete" method="post">
+          <button type="submit" class="delete-button">Delete</button>
+        </form>
       </div>
     </div>
   </div>
-
 </body>
 </html>
