@@ -2,7 +2,7 @@ require_relative '../models/space'
 class SpacesRepository
     def self.create(name, city, description, price, start_date, end_date, user_id)
         query = "INSERT INTO spaces (name, city, description, price, start_date, end_date, created_at, updated_at, user_id) VALUES ($1, $2, $3, $4, $5, $6, NOW(), NOW(), $7);"
-        DatabaseConnection.exec_params(query, [name, city, description, price, start_date, end_date, created_at, updated_at, user_id])
+        DatabaseConnection.exec_params(query, [name, city, description, price, start_date, end_date, user_id])
     
         return nil
     end

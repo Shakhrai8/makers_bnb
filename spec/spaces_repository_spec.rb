@@ -18,7 +18,7 @@ RSpec.describe SpacesRepository do
 
     context '.create' do
         it 'creates a newspaces in the database' do
-        SpacesRepository.create('The Ritz', 'Cornwall', '3 bedroom flat', '70.50', '2023-05-05', '2023-06-20', NOW(), NOW(), 1)
+        SpacesRepository.create('The Ritz', 'Cornwall', '3 bedroom flat', '70.50', '2023-05-05', '2023-06-20', 1)
             spaces = SpacesRepository.all 
 
             expect(spaces.last.name).to eq('The Ritz')
