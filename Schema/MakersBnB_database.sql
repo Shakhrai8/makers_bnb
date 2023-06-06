@@ -12,6 +12,7 @@ CREATE TABLE users (
 CREATE TABLE spaces (
     id SERIAL PRIMARY KEY,
     name TEXT,
+    city TEXT,
     description TEXT,
     price FLOAT,
     start_date DATE,
@@ -29,7 +30,7 @@ INSERT INTO users (username, email, password) VALUES
 ('Afrika', 'Afrika@gmail.com', 'Japan123');
 
 
-INSERT INTO spaces (name, description, price, start_date, end_date, created_at, updated_at, user_id) VALUES
-('London Plaza', '2 bedroom flat', '60.50', '2023-06-05', '2023-06-20', NOW(), NOW(), 1),
-('Paris Cottage', 'Entire house', '30.50', '2023-07-05', '2023-07-20', NOW(), NOW(), 2);
+INSERT INTO spaces (name, city, description, price, start_date, end_date, created_at, updated_at, user_id) VALUES
+('London Plaza', 'London', '2 bedroom flat', '60.50', '2023-06-05', '2023-06-20', NOW(), NOW(), 1),
+('Paris Cottage', 'Paris', 'Entire house', '30.50', '2023-07-05', '2023-07-20', NOW(), NOW(), 2);
 
