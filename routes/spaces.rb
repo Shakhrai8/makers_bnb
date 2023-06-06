@@ -32,7 +32,7 @@ class Spaces < Sinatra::Base
     end
   end
 
-  patch '/:space_id/update' do
+  get '/:space_id/update' do
     if logged_in?
         space_id = params[:space_id].to_i
         space = SpaceRepository.find(space_id)
@@ -55,8 +55,18 @@ class Spaces < Sinatra::Base
     else
         redirect 'login'
     end
-    end
+  end
 
+  delete '/:space_id/delete' do 
+    if logged_in?
+    SpaceRepository.delete(space_id)
+    redirect '/profile'
+
+    else 
+        redirect '/login'
+    end 
+  end 
+  
   private
 
   def logged_in?
