@@ -26,7 +26,7 @@ class Spaces < Sinatra::Base
 
         SpaceRepository.create(name, city, description, price, start_date, end_date, user_id)
 
-        erb :new_space
+        erb :space
     else
         redirect '/login'
     end
