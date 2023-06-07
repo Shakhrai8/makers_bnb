@@ -9,20 +9,27 @@ class Spaces < Sinatra::Base
 
 
 
-  get '/new_booking' do
+  get '/space/:space_id/new_booking' do
     redirect '/login' unless logged_in?
 
     erb :new_booking
   end 
 
-  post '/new_booking' do 
+  post '/space/:space_id/new_booking' do 
     redirect '/login' unless logged_in?
 
     booking = Booking.new
-    booking.
+    booking.space_id = params[:space_id]
+    booking.user_id = session[:user_id]
+    booking.start_date = params[:start_date]
+    booking.end_date = params[:end_date]
+    booking.contents = params[:contents]
+    booking.status = params[:status]
+
+    BookingReposi
   end 
 
-  get '/booking/:booking_id' do 
+  get '/space/:space_id/new_booking/:booking_id' do 
   end
 
   get '/booking/:booking_id/edit' do 
