@@ -29,6 +29,7 @@ CREATE TABLE bookings (
     user_id INTEGER,
     start_date DATE,
     end_date DATE,
+    contents TEXT,
     status TEXT DEFAULT 'pending',
     FOREIGN KEY (space_id) REFERENCES spaces(id),
     FOREIGN KEY (user_id) REFERENCES users(id)
