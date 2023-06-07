@@ -2,9 +2,9 @@ require_relative '../models/booking'
 
 class BookingRepository 
 
-    def self.create(space_id, user_id, start_date, end_date, contents, status = 'pending')
-        query = 'INSERT INTO bookings (space_id, user_id, start_date, end_date, contents, status) VALUES ($1, $2, $3, $4, $5, $6);'
-        DatabaseConnection.exec_params(query, [space_id, user_id, start_date, end_date, contents, status])
+    def self.create(space_id, user_id, start_date, end_date, contents)
+        query = 'INSERT INTO bookings (space_id, user_id, start_date, end_date, contents) VALUES ($1, $2, $3, $4, $5);'
+        DatabaseConnection.exec_params(query, [space_id, user_id, start_date, end_date, contents])
         #CHECK WHETHER WE SHOULD PUT STATUS FOR PARAMS
 
         return nil

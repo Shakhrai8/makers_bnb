@@ -9,10 +9,11 @@ RSpec.describe BookingRepository do
   
     context '.create' do 
         it 'creates a booking' do 
-            BookingRepository.create('1', '1', "2023-06-10", '2023-06-15', 'Need an extra chair', 'pending')
+            BookingRepository.create('1', '1', "2023-06-10", '2023-06-15', 'Need an extra chair')
 
             result = BookingRepository.all
             expect(result[2].contents).to eq('Need an extra chair')
+            expect(result[2].status).to eq('pending')
         end 
     end 
 
