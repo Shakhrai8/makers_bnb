@@ -25,7 +25,7 @@ class Users < Sinatra::Base
 
   get '/login' do
     if logged_in?
-      redirect '/profile'
+      redirect '/feed'
     else
       erb :login
     end

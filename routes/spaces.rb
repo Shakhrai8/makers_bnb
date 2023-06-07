@@ -6,6 +6,11 @@ class Spaces < Sinatra::Base
   enable :sessions
   set :session_secret, "5cdde102f6f68294e1cff23f341aaaaf2d2725453eaccc8ebc239629e724fc53"
 
+  get '/feed' do
+    @spaces = SpacesRepository.all
+    erb :global_feed
+  end
+
   get '/new_space' do
     redirect '/login' unless logged_in?
 

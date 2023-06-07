@@ -8,9 +8,14 @@
   <div class="container">
     <div class="content">
       <div class="header">
+      <div class="heading-wrapper">
         <h1 class="heading">My Profile</h1>
+      </div>
+      <div class="buttons">
+        <a href="/feed" class="feed-button">Global Feed</a>
         <a href="/logout" class="logout-button">Log Out</a>
       </div>
+    </div>
       <div class="profile-box">
         <div class="profile-info">
           <h2 class="info-heading">Welcome, <%= @user.username %></h2>

@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>MAKERS BnB - Global Feed</title>
+  <link rel="stylesheet" type="text/css" href="/feed_style.css">
+  <!-- Add any additional CSS files for styling -->
+</head>
+<body>
+  <div class="container">
+    <div class="content">
+      <div class="header">
+        <h1 class="heading">Global Feed</h1>
+        <a href="/profile" class="profile-button">My Profile</a>
+        <a href="/logout" class="logout-button">Log Out</a>
+      </div>
+      <div class="feed">
+        <% @spaces.each do |space| %>
+          <div class="space-card">
+            <!-- Display space details here -->
+            <h2><%= space.name %></h2>
+            <p><%= space.description %></p>
+            <p><%= space.price %></p>
+            <!-- Add any additional space details you want to display -->
+            <a href="/space/<%= space.id %>" class="book-button">Book Now</a>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</body>
+</html>
