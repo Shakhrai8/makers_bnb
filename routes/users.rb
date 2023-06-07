@@ -48,11 +48,14 @@ class Users < Sinatra::Base
   get '/profile' do
     if logged_in?
       @user = current_user
+      profile_user_id = session[:user_id]
+      @spaces = SpacesRepository.all.select { |space| space.user_id.to_i == profile_user_id }
       erb :profile
     else
       redirect '/login'
     end
   end
+   
 
   get '/logout' do
     session.clear
