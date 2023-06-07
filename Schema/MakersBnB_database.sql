@@ -23,6 +23,25 @@ CREATE TABLE spaces (
     FOREIGN KEY (user_id) REFERENCES users(id)
 );
 
+CREATE TABLE bookings (
+    id SERIAL PRIMARY KEY,
+    space_id INTEGER,
+    user_id INTEGER,
+    start_date DATE,
+    end_date DATE,
+    status TEXT DEFAULT 'pending',
+    FOREIGN KEY (space_id) REFERENCES spaces(id),
+    FOREIGN KEY (user_id) REFERENCES users(id)
+);
+
+CREATE TABLE availability (
+    id SERIAL PRIMARY KEY,
+    space_id INTEGER,
+    date DATE,
+    is_available BOOLEAN DEFAULT true,
+    FOREIGN KEY (space_id) REFERENCES spaces(id)
+);
+
 INSERT INTO users (username, email, password) VALUES
 ('Jessica', 'Jessica@gmail.com', 'IloveMakers2023'),
 ('Khuslen', 'Khuslen@gmail.com', 'Hello123'),
