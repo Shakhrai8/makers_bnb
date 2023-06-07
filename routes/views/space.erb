@@ -8,19 +8,48 @@
 <body>
   <div class="container">
     <div class="content">
-      <div class="header">
-        <h1 class="heading"><%= @space.name %></h1>
-        <a href="/profile" class="back-button">Back to Profile</a>
+      <div class="banner">
+        <% if @background_image %>
+          <img src="<%= @background_image %>" alt="Background Image">
+        <% end %>
+        <div class="weather-overlay">
+          <% if @space.city %>
+            <h2><%= @space.city %></h2>
+          <% end %>
+          <% if @temperature && @weather_description %>
+            <p>Temperature: <%= @temperature %>°C</p>
+            <p>Description: <%= @weather_description %></p>
+          <% else %>
+            <p>Weather information currently unavailable.</p>
+          <% end %>
+        </div>
       </div>
-      <div class="space-info-box">
-        <h2 class="info-heading">Description:</h2>
-        <p class="info-text"><%= @space.description %></p>
-        <h2 class="info-heading">Price:</h2>
-        <p class="info-text">$<%= @space.price %></p>
-        <h2 class="info-heading">Availability:</h2>
-        <p class="info-text">Start Date: <%= @space.start_date %></p>
-        <p class="info-text">End Date: <%= @space.end_date %></p>
-
+      <div class="space-info">
+        <div class="space-details">
+          <h2 class="info-heading">Description:</h2>
+          <p class="info-text"><%= @space.description %></p>
+          <h2 class="info-heading">Price:</h2>
+          <p class="info-text">$<%= @space.price %></p>
+          <h2 class="info-heading">Availability:</h2>
+          <p class="info-text">Start Date: <%= @space.start_date %></p>
+          <p class="info-text">End Date: <%= @space.end_date %></p>
+        </div>
+        <div class="photo-gallery">
+        <% @photos.each do |photo| %>
+          <img src="<%= photo.photo_url %>" alt="Property Image" class="gallery-image">
+        <% end %>
+        </div>
+      </div>
+      <div class="weather-info">
+        <h2 class="info-heading">Weather:</h2>
+        <% if @temperature && @weather_description %>
+          <p class="info-text">Temperature: <%= @temperature %>°C</p>
+          <p class="info-text">Description: <%= @weather_description %></p>
+        <% else %>
+          <p class="info-text">Weather information currently unavailable.</p>
+        <% end %>
+      </div>
+      <div class="buttons">
         <!-- Edit button -->
         <a href="/space/<%= @space.id %>/edit" class="edit-button">Edit</a>
 
@@ -28,7 +57,11 @@
         <form action="/space/<%= @space.id %>/delete" method="get">
           <button type="submit" class="delete-button">Delete</button>
         </form>
+
+        <!-- Book button -->
+        <a href="#" class="book-button">Book</a>
       </div>
+      <a href="/profile" class="back-button">Back to Profile</a>
     </div>
   </div>
 </body>

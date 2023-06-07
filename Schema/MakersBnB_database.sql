@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS users, spaces, bookings, availability;
+DROP TABLE IF EXISTS users, spaces, bookings, availability, photos;
 
 
 -- Table Definition
@@ -43,6 +43,13 @@ CREATE TABLE availability (
     FOREIGN KEY (space_id) REFERENCES spaces(id)
 );
 
+CREATE TABLE photos (
+  id INT PRIMARY KEY,
+  space_id INT,
+  photo_url VARCHAR(255),
+  FOREIGN KEY (space_id) REFERENCES spaces(id)
+);
+
 INSERT INTO users (username, email, password) VALUES
 ('Jessica', 'Jessica@gmail.com', 'IloveMakers2023'),
 ('Khuslen', 'Khuslen@gmail.com', 'Hello123'),
@@ -72,6 +79,12 @@ INSERT INTO availability (space_id, date, is_available) VALUES
 (2, '2023-07-09', false),
 (2, '2023-07-10', false);
 
+INSERT INTO photos (id, space_id, photo_url)
+VALUES
+  (1, 1, 'https://c4.wallpaperflare.com/wallpaper/530/118/410/table-room-interior-wallpaper-preview.jpg'),
+  (2, 1, 'https://c4.wallpaperflare.com/wallpaper/754/151/797/design-style-lamp-room-wallpaper-preview.jpg'),
+  (3, 2, 'https://images.wallpaperscraft.com/image/single/interior_design_style_design_68248_1920x1080.jpg'),
+  (4, 2, 'https://c0.wallpaperflare.com/preview/598/43/584/interior-design-room-office.jpg');
 
 
 

@@ -1,8 +1,10 @@
 require 'sinatra/base'
 require 'sinatra/reloader'
+require 'dotenv/load'
 require_relative 'lib/database_connection'
 require_relative 'routes/users'
 require_relative 'routes/spaces'
+require_relative 'config'
 
 DatabaseConnection.connect
 

@@ -11,5 +11,10 @@ gem "webrick", "~> 1.7"
 gem "rack-test", "~> 1.1"
 
 gem "rspec", "~> 3.11"
+gem 'dotenv', '~> 2.7'
+gem 'httparty'
+gem 'unsplash'
+
+
 
 gem "rainbow", "~> 3.1"

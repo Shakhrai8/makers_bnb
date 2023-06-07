@@ -1,6 +1,13 @@
 require 'sinatra/base'
+require 'dotenv/load'
 require_relative '../lib/repositories/spaces_repository'
 require_relative '../lib/repositories/user_repository'
+require_relative '../lib/repositories/photo_repository'
+require_relative '../config'
+require 'httparty'
+require 'cgi'
+require 'unsplash'
+require_relative '../lib/models/space'
 
 class Spaces < Sinatra::Base
   enable :sessions
@@ -39,13 +46,27 @@ class Spaces < Sinatra::Base
 
   get '/space/:space_id' do
     redirect '/profile' unless logged_in?
-
+  
     space_id = params[:space_id].to_i
     @space = SpacesRepository.find(space_id)
-
+    @photos = PhotoRepository.find_by_space_id(space_id)
+  
+    # Retrieve weather information for the city
+    weather_info = get_weather_info(@space.city)
+    @temperature = weather_info['temperature']
+    @weather_description = weather_info['description']
+  
+    # Retrieve a random background image from Unsplash
+    # unsplash = Unsplash::Client.new(
+    #   access_key: ENV['UNSPLASH_ACCESS_KEY'],
+    #   secret_key: ENV['UNSPLASH_SECRET_KEY']
+    # )
+    # photos = unsplash.search.photos(@space.city)
+    # @background_image = photos.first.urls.regular
+  
     erb :space
   end
-
+  
   get '/space/:space_id/edit' do
     redirect '/login' unless logged_in?
   
@@ -104,4 +125,32 @@ class Spaces < Sinatra::Base
   def logged_in?
     !session[:user_id].nil?
   end
+
+  def get_weather_info(city)
+    weather_api_key = ENV['WEATHER_API_KEY']
+    units = 'metric'  # Use 'metric' for Celsius or 'imperial' for Fahrenheit
+    lang = 'en'  # Specify the language for the weather information
+  
+    geocoding_url = "http://api.openweathermap.org/geo/1.0/direct?q=#{city}&limit=1&appid=#{weather_api_key}"
+  
+    geocoding_response = HTTParty.get(geocoding_url)
+    return {} unless geocoding_response.code == 200
+  
+    geocoding_data = JSON.parse(geocoding_response.body)
+    return {} if geocoding_data.empty?
+  
+    lat = geocoding_data[0]['lat']
+    lon = geocoding_data[0]['lon']
+  
+    weather_url = "https://api.openweathermap.org/data/2.5/weather?lat=#{lat}&lon=#{lon}&units=#{units}&lang=#{lang}&appid=#{weather_api_key}"
+  
+    weather_response = HTTParty.get(weather_url)
+    return {} unless weather_response.code == 200
+  
+    weather_data = JSON.parse(weather_response.body)
+    {
+      'temperature' => weather_data['main']['temp'],
+      'description' => weather_data['weather'][0]['description']
+    }
+  end  
 end
