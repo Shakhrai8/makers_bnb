@@ -63,14 +63,14 @@ class SpacesRepository
     space.id = result[0]['id'].to_i
     space.name = result[0]['name']
     space.city = result[0]['city']
-    space.description = result[0]['descripttion']
+    space.description = result[0]['description']
     space.price = result[0]['price']
     space.start_date = result[0]['start_date']
     space.end_date = result[0]['end_date']
     space.user_id = result[0]['user_id']
     space.created_at = result[0]['created_at'] 
     space.updated_at = result[0]['updated_at']
-    
+
     return space
   end
 
