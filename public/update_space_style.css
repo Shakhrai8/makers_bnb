@@ -15,7 +15,7 @@ body {
 }
 
 .content {
-  width: 400px;
+  width: 500px; /* Adjust the width as needed */
   padding: 20px;
   background-color: #fff;
   border-radius: 5px;
@@ -41,7 +41,7 @@ input[type="text"],
 textarea,
 input[type="number"],
 input[type="date"] {
-  width: 100%;
+  width: 95%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 5px;
