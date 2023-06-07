@@ -13,6 +13,13 @@ class Spaces < Sinatra::Base
   enable :sessions
   set :session_secret, "5cdde102f6f68294e1cff23f341aaaaf2d2725453eaccc8ebc239629e724fc53"
 
+  Unsplash.configure do |config|
+    config.application_access_key = ENV['UNSPLASH_ACCESS_KEY']
+    config.application_secret = ENV['UNSPLASH_SECRET_KEY']
+    config.application_redirect_uri = "http://localhost:9292/oauth/callback"
+    config.utm_source = "air bnb clone exercise"
+  end
+
   get '/feed' do
     @spaces = SpacesRepository.all
     erb :global_feed
@@ -57,15 +64,18 @@ class Spaces < Sinatra::Base
     @weather_description = weather_info['description']
   
     # Retrieve a random background image from Unsplash
-    # unsplash = Unsplash::Client.new(
-    #   access_key: ENV['UNSPLASH_ACCESS_KEY'],
-    #   secret_key: ENV['UNSPLASH_SECRET_KEY']
-    # )
-    # photos = unsplash.search.photos(@space.city)
-    # @background_image = photos.first.urls.regular
+    unsplash = Unsplash::Client.new(
+      access_key: Unsplash.configuration.application_access_key,
+      secret_key: Unsplash.configuration.application_secret
+    )
+    photo = Unsplash::Photo.random(query: @space.city)
+    @background_image = photo.urls.regular
   
     erb :space
   end
+  
+  
+  
   
   get '/space/:space_id/edit' do
     redirect '/login' unless logged_in?
