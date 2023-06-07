@@ -52,7 +52,7 @@ class Spaces < Sinatra::Base
     erb :update_space, locals: { space: space }
   end
 
-  patch '/space/:space_id/edit' do
+  post '/space/:space_id/edit' do
     redirect '/login' unless logged_in?
 
     space_id = params[:space_id].to_i
@@ -72,11 +72,20 @@ class Spaces < Sinatra::Base
     redirect "/space/#{space_id}"
   end
 
-  delete '/space/:space_id' do
+  get '/space/:space_id/delete' do
+    redirect '/login' unless logged_in?
+  
+    space_id = params[:space_id].to_i
+    @space = SpacesRepository.find(space_id)
+  
+    erb :delete_space
+  end
+
+  post '/space/:space_id/delete' do
     redirect '/login' unless logged_in?
 
     space_id = params[:space_id].to_i
-    space = SpacesRepository.find(space_id)
+    @space = SpacesRepository.find(space_id)
 
     #redirect '/profile' unless space && space.user_id == session[:user_id]
 
