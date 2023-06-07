@@ -13,67 +13,51 @@ body {
 
 /* Main Styles */
 .container {
-  position: relative;
   display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
   min-height: 100vh; /* Use min-height instead of height for responsiveness */
   background-color: transparent; /* Set the background color to transparent */
   color: #333;
 }
 
+.menu {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  padding: 20px;
+  background-color: #f2f2f2;
+}
+
+.menu a {
+  display: block;
+  padding: 10px 20px;
+  font-size: 18px;
+  background-color: #007bff; /* Blue button color */
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  text-decoration: none;
+  margin-bottom: 10px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.menu a:hover {
+  background-color: #0056b3; /* Darker blue on hover */
+  transform: scale(1.05);
+}
+
 .content {
-  text-align: center;
-  z-index: 1;
+  flex: 1;
+  padding: 20px;
 }
 
 .header {
-  display: flex;
-  justify-content: flex-end;
-  align-items: center;
   margin-bottom: 20px;
-  padding: 20px;
 }
 
 .heading {
   font-size: 36px;
   margin: 0;
-}
-
-.profile-button {
-  padding: 10px 20px;
-  font-size: 18px;
-  background-color: #007bff; /* Blue button color */
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  text-decoration: none;
-  margin-right: 10px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.profile-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-  transform: scale(1.05);
-}
-
-.logout-button {
-  padding: 10px 20px;
-  font-size: 18px;
-  background-color: #007bff; /* Blue button color */
-  border: none;
-  border-radius: 5px;
-  color: #fff;
-  text-decoration: none;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-}
-
-.logout-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
-  transform: scale(1.05);
 }
 
 .feed {

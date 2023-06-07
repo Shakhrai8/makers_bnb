@@ -7,11 +7,14 @@
 </head>
 <body>
   <div class="container">
+    <div class="menu">
+      <a href="/profile" class="profile-button">My Profile</a>
+      <a href="/new_space" class="new-space-button">List a Space</a>
+      <a href="/logout" class="logout-button">Log Out</a>
+    </div>
     <div class="content">
       <div class="header">
         <h1 class="heading">Global Feed</h1>
-        <a href="/profile" class="profile-button">My Profile</a>
-        <a href="/logout" class="logout-button">Log Out</a>
       </div>
       <div class="feed">
         <% @spaces.each do |space| %>
