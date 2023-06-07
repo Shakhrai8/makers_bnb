@@ -1,0 +1,45 @@
+.back-button {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  color: #fff;
+  background-color: #1e7ea8;
+  border: none;
+  border-radius: 5px;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+.back-button:hover {
+  background-color: #0e5d80;
+  transform: scale(1.05);
+}
+
+.back-button::before {
+  content: "←";
+  font-weight: bold;
+  font-size: 18px;
+  margin-right: 5px;
+}
+
+.back-button::after {
+  display: inline-block;
+  width: 10px;
+  height: 10px;
+  border-top: 2px solid #fff;
+  border-right: 2px solid #fff;
+  transform: rotate(-45deg);
+  margin-left: 5px;
+}
+
+.back-button:hover::before {
+  transform: translateX(-3px);
+}
+
+.back-button:hover::after {
+  transform: rotate(-45deg) translateX(-3px);
+  content: none; /* Remove the ^ symbol */
+}
