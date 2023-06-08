@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>New Booking</title>
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+  <h1>New Booking</h1>
+  <% if logged_in? %>
+    <!-- Booking form -->
+    <form action="/space/<%= params[:space_id] %>/new_booking" method="post">
+      <!-- Form fields -->
+      <label for="start_date">Start Date:</label>
+      <input type="date" name="start_date" id="start_date" required><br>
+
+      <label for="end_date">End Date:</label>
+      <input type="date" name="end_date" id="end_date" required><br>
+
+      <label for="contents">Contents:</label>
+      <input type="text" name="contents" id="contents" required><br>
+
+
+      <!-- Submit button -->
+      <input type="submit" value="Book">
+    </form>
+  <% else %>
+    <!-- Redirect message -->
+    <p>You must be logged in to make a booking. Please <a href="/login">log in</a>.</p>
+  <% end %>
+</body>
+</html>

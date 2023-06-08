@@ -58,8 +58,9 @@ class BookingRepository
 
     def self.all_helper(inst)
         booking = Booking.new 
+        booking.id = inst['id'].to_i
         booking.space_id = inst['space_id'].to_i
-        booking.user_id = inst['user_id']
+        booking.user_id = inst['user_id'].to_i
         booking.start_date = inst['start_date']
         booking.end_date = inst['end_date']
         booking.contents = inst['contents']
@@ -71,8 +72,9 @@ class BookingRepository
     def self.find_helper(result)
         return nil if result.ntuples.zero?
         booking = Booking.new 
+        booking.id = result[0]['id'].to_i
         booking.space_id = result[0]['space_id'].to_i
-        booking.user_id = result[0]['user_id']
+        booking.user_id = result[0]['user_id'].to_i
         booking.start_date = result[0]['start_date']
         booking.end_date = result[0]['end_date']
         booking.contents = result[0]['contents']

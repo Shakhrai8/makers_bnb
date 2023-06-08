@@ -30,31 +30,33 @@ class Spaces < Sinatra::Base
     booking.start_date = params[:start_date]
     booking.end_date = params[:end_date]
     booking.contents = params[:contents]
-    booking.status = params[:status]
 
-    BookingRepository.create(booking.space_id, booking.user_id, booking.start_date, booking.end_date, booking.contents, booking.status)
+    BookingRepository.create(booking.space_id, booking.user_id, booking.start_date, booking.end_date, booking.contents)
+    result = BookingRepository.all
 
-    redirect "/booking/#{BookingRepository.all.last.id}"
+    redirect "/space/#{result.last.space_id}/new_booking/#{result.last.id}"
+
   end 
 
   get '/space/:space_id/new_booking/:booking_id' do 
     redirect '/login' unless logged_in?
+    space_id = params[:space_id]
     booking_id = params[:booking_id].to_i
     @booking = BookingRepository.find(booking_id)
 
     erb :booking
   end
 
-  get '/booking/:booking_id/delete' do
+  get '/space/:space_id/new_booking/:booking_id/delete' do
     redirect '/login' unless logged_in?
 
     booking_id = params[:booking_id].to_i
     @booking = BookingRepository.find(booking_id)
 
-    erb: delete_booking
+    erb :delete_booking
   end 
 
-  post '/booking/:booking_id/delete' do 
+  post '/space/:space_id/new_booking/:booking_id/delete' do 
     redirect '/login' unless logged_in?
 
     booking_id = params[:booking_id].to_i

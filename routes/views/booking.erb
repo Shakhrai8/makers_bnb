@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Booking Details</title>
+  <link rel="stylesheet" type="text/css" href="/styles.css">
+</head>
+<body>
+  <h1>Booking Details</h1>
+  <% if logged_in? %>
+    <% if @booking %>
+      <!-- Display booking details -->
+      <p>Booking ID: <%= @booking.id %></p>
+      <p>Space ID: <%= @booking.space_id %></p>
+      <p>User ID: <%= @booking.user_id %></p>
+      <p>Start Date: <%= @booking.start_date %></p>
+      <p>End Date: <%= @booking.end_date %></p>
+      <p>Contents: <%= @booking.contents %></p>
+      <p>Status: <%= @booking.status %></p>
+    <% else %>
+      <!-- Booking not found message -->
+      <p>Booking not found.</p>
+    <% end %>
+  <% else %>
+    <!-- Redirect message -->
+    <p>You must be logged in to view booking details. Please <a href="/login">log in</a>.</p>
+  <% end %>
+</body>
+</html>
