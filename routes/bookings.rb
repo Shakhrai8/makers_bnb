@@ -45,7 +45,7 @@ class Spaces < Sinatra::Base
     booking_id = params[:booking_id].to_i
     @booking = BookingRepository.find(booking_id)
 
-    erb: delete_booking
+    erb :delete_booking
   end 
 
   post '/booking/:booking_id/delete' do 

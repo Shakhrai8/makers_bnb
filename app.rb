@@ -5,6 +5,7 @@ require_relative 'lib/database_connection'
 require_relative 'routes/users'
 require_relative 'routes/spaces'
 require_relative 'config'
+require_relative 'routes/bookings'
 
 DatabaseConnection.connect
 
