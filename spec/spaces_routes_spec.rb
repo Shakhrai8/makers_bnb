@@ -62,34 +62,41 @@ describe Spaces do
         end
     end
 
-    describe "POST /space/:space_id/edit" do
+    describe "GET '/space/:space_id/edit'" do
         context "when logged in" do
-            xit "updates the space and redirects to the space view" do
-            space_id = 1
-            space = double("Space")
-            allow(SpacesRepository).to receive(:find).with(space_id).and_return(space)
-            allow(SpacesRepository).to receive(:update)
+            let(:space_id) { 1 }
+            let(:space) { double("Space", user_id: 1) }
 
+            before do
             allow_any_instance_of(Spaces).to receive(:logged_in?).and_return(true)
+            allow(SpacesRepository).to receive(:find).with(space_id).and_return(space)
+            end
 
-            post "/space/#{space_id}/edit", name: "Updated Space"
+            it "renders the update_space view" do
+            get "/space/#{space_id}/edit"
 
-            expect(SpacesRepository).to have_received(:update).with(space)
-            expect(last_response).to be_redirect
-            expect(last_response.location).to include("/space/#{space_id}")
+        
+            expect(last_response.body).to include('Update Space')
+            expect(last_response.body).to include('Name:')
+            expect(last_response.body).to include('City:')
+            expect(last_response.body).to include('Description:')
+            expect(last_response.body).to include('Price:')
+            expect(last_response.body).to include('Start Date:')
+            expect(last_response.body).to include('End Date:')
             end
         end
 
         context "when not logged in" do
-            xit "redirects to the login page" do
+            it "redirects to the login page" do
             allow_any_instance_of(Spaces).to receive(:logged_in?).and_return(false)
 
-            post '/space/1/edit'
+            get '/space/1/edit'
 
             expect(last_response).to be_redirect
             expect(last_response.location).to include('/login')
             end
         end
+
     end
 
 end

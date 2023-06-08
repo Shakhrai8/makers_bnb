@@ -58,12 +58,12 @@ RSpec.describe SpacesRepository do
 
     context '.delete' do
         it 'deletes a single listing by id' do
-            
-            SpacesRepository.delete(1)
+            SpacesRepository.create('The Ritz', 'Cornwall', '3 bedroom flat', '70.50', '2023-05-05', '2023-06-20', 1)
+            SpacesRepository.delete(3)
             list = SpacesRepository.all
 
 
-            expect(list.length).to eq(1)
+            expect(list.length).to eq(2)
             expect(list.last.name).to eq('Paris Cottage')
             
         end

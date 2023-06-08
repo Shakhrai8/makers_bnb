@@ -4,7 +4,6 @@ require_relative 'database_helper'
 require_relative '../app'
 
 RSpec.describe 'Bookings' do
-    RSpec.describe 'Users' do
         include Rack::Test::Methods
       
         def app
@@ -19,3 +18,6 @@ RSpec.describe 'Bookings' do
         before(:each) do
             reset_makers_bnb_table
           end
+        end
+      end
+      
