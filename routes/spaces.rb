@@ -7,6 +7,7 @@ require_relative '../config'
 require 'httparty'
 require 'cgi'
 require 'unsplash'
+require_relative '../lib/models/availability'
 require_relative '../lib/models/space'
 
 class Spaces < Sinatra::Base
@@ -47,6 +48,8 @@ class Spaces < Sinatra::Base
       space.name, space.city, space.description, space.price,
       space.start_date, space.end_date, space.user_id
     )
+
+    set_default_availability(SpacesRepository.all.last.id, space.start_date, space.end_date)
 
     redirect "/space/#{SpacesRepository.all.last.id}"
   end
@@ -162,5 +165,24 @@ class Spaces < Sinatra::Base
       'temperature' => weather_data['main']['temp'],
       'description' => weather_data['weather'][0]['description']
     }
-  end  
+  end 
+  
+  def set_default_availability(space_id, start_date, end_date)
+    current_date = start_date
+
+    while current_date <= end_date
+      # Create a new availability record for each date
+      availability = Availability.new
+      availability.space_id = space_id
+      availability.date = current_date.to_s
+  
+      # Save the availability record to the database
+      sql = "INSERT INTO availability (space_id, date) VALUES ($1, $2)"
+      params = [availability.space_id, availability.date]
+      DatabaseConnection.exec_params(sql, params)
+  
+      # Increment the current date by 1 day
+      current_date = current_date.next
+    end
+  end 
 end

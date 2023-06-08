@@ -3,22 +3,84 @@
 <head>
   <title>New Booking</title>
   <link rel="stylesheet" type="text/css" href="/styles.css">
+  <script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.1.4/dist/sweetalert2.min.js"></script>
+
+  <script>
+    const bookedDates = <%= @availability_dates.to_json %>;
+    const startDateInput = document.getElementById('start_date');
+    const endDateInput = document.getElementById('end_date');
+    const error = '<%= params[:error] %>';
+  
+    startDateInput.addEventListener('change', updateEndDateOptions);
+    endDateInput.addEventListener('change', updateStartDateOptions);
+  
+    function updateEndDateOptions() {
+      const selectedStartDate = new Date(startDateInput.value);
+      const availableEndDates = getAvailableEndDates(selectedStartDate);
+      updateDateOptions(endDateInput, availableEndDates);
+    }
+  
+    function updateStartDateOptions() {
+      const selectedEndDate = new Date(endDateInput.value);
+      const availableStartDates = getAvailableStartDates(selectedEndDate);
+      updateDateOptions(startDateInput, availableStartDates);
+    }
+  
+    function getAvailableEndDates(startDate) {
+      return bookedDates.filter(date => new Date(date) >= startDate);
+    }
+  
+    function getAvailableStartDates(endDate) {
+      return bookedDates.filter(date => new Date(date) <= endDate);
+    }
+  
+    function updateDateOptions(dateInput, availableDates) {
+      const selectedDate = new Date(dateInput.value);
+      dateInput.innerHTML = '';
+  
+      availableDates.forEach(date => {
+        const option = document.createElement('option');
+        option.value = date;
+        option.text = date;
+        dateInput.appendChild(option);
+      });
+  
+      dateInput.value = selectedDate.toISOString().split('T')[0];
+    }
+  
+    // Show error message if dates are unavailable
+    if (error === 'dates_unavailable') {
+      Swal.fire({
+        icon: 'error',
+        title: 'Dates Unavailable',
+        text: 'The selected dates are not available. Please choose different dates.',
+        confirmButtonText: 'OK'
+      });
+    }
+  
+    updateEndDateOptions();
+  </script>
+  
 </head>
 <body>
   <h1>New Booking</h1>
   <% if logged_in? %>
     <!-- Booking form -->
     <form action="/space/<%= params[:space_id] %>/new_booking" method="post">
+      <!-- Error message -->
+      <div id="error_message" style="display: none;">
+        <p>The selected dates are unavailable. Please choose different dates.</p>
+      </div>
+
       <!-- Form fields -->
       <label for="start_date">Start Date:</label>
       <input type="date" name="start_date" id="start_date" required><br>
 
       <label for="end_date">End Date:</label>
-      <input type="date" name="end_date" id="end_date" required><br>
+      <input type="date" name="end_date" id="end_date" required min=""><br>
 
       <label for="contents">Contents:</label>
       <input type="text" name="contents" id="contents" required><br>
-
 
       <!-- Submit button -->
       <input type="submit" value="Book">
