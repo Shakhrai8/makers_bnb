@@ -1,0 +1,14 @@
+<h1>Notifications</h1>
+
+<% if notifications.empty? %>
+  <p>No new notifications.</p>
+<% else %>
+  <ul>
+    <% notifications.each do |notification| %>
+      <li>
+        <strong><%= @sender_name %></strong>:
+        <%= notification.content %>
+      </li>
+    <% end %>
+  </ul>
+<% end %>

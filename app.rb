@@ -22,6 +22,7 @@ class Application < Sinatra::Base
 
   use Users
   use Spaces
+  use Bookings
   
   get '/' do
     return erb(:index)

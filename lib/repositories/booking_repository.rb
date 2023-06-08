@@ -4,9 +4,9 @@ class BookingRepository
 
     def self.create(space_id, user_id, start_date, end_date, contents)
         query = 'INSERT INTO bookings (space_id, user_id, start_date, end_date, contents) VALUES ($1, $2, $3, $4, $5);'
-        DatabaseConnection.exec_params(query, [space_id, user_id, start_date, end_date, contents])
-        #CHECK WHETHER WE SHOULD PUT STATUS FOR PARAMS
-
+        params = [space_id, user_id, start_date, end_date, contents]
+        DatabaseConnection.exec_params(query, params)
+  
         return nil
     end 
 
@@ -52,6 +52,63 @@ class BookingRepository
       booked_dates = (space_start_date..space_end_date).to_a & (start_date..end_date).to_a
   
       booked_dates
+    end
+
+    def self.incoming_requests(user_id)
+      # Retrieve incoming requests for the user
+      query = 'SELECT * FROM bookings WHERE space_id IN (SELECT id FROM spaces WHERE user_id = $1) AND status = $2'
+      params = [user_id, 'pending']
+      result = DatabaseConnection.exec_params(query, params)
+  
+      bookings = []
+      result.each do |row|
+        booking = Booking.new
+        booking.id = row['id'].to_i
+        booking.space_id = row['space_id'].to_i
+        booking.user_id = row['user_id'].to_i
+        booking.start_date = Date.parse(row['start_date'])
+        booking.end_date = Date.parse(row['end_date'])
+        booking.contents = row['contents']
+        booking.status = row['status']
+        bookings << booking
+      end
+  
+      bookings
+    end
+
+    def self.find_space_name(space_id)
+      query = 'SELECT name FROM spaces WHERE id = $1'
+      result = DatabaseConnection.exec_params(query, [space_id])
+  
+      result[0]['name'] if result.any?
+    end
+  
+    def self.sent_requests(user_id)
+      # Retrieve sent requests by the user
+      query = 'SELECT * FROM bookings WHERE user_id = $1'
+      result = DatabaseConnection.exec_params(query, [user_id])
+  
+      bookings = []
+      result.each do |row|
+        booking = Booking.new
+        booking.id = row['id'].to_i
+        booking.space_id = row['space_id'].to_i
+        booking.user_id = row['user_id'].to_i
+        booking.start_date = Date.parse(row['start_date'])
+        booking.end_date = Date.parse(row['end_date'])
+        booking.contents = row['contents']
+        booking.status = row['status']
+        bookings << booking
+      end
+  
+      bookings
+    end
+
+    def self.update_status(request_id, status)
+      query = 'UPDATE bookings SET status = $1 WHERE id = $2;'
+      params = [status, request_id]
+      DatabaseConnection.exec_params(query, params)
+      nil
     end
       
     private

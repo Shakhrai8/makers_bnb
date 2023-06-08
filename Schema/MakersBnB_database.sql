@@ -1,4 +1,4 @@
-DROP TABLE IF EXISTS users, spaces, bookings, availability, photos;
+DROP TABLE IF EXISTS users, spaces, bookings, availability, photos, messages;
 
 
 -- Table Definition
@@ -41,6 +41,17 @@ CREATE TABLE availability (
     date DATE,
     is_available BOOLEAN DEFAULT true,
     FOREIGN KEY (space_id) REFERENCES spaces(id)
+);
+
+CREATE TABLE messages (
+    id SERIAL PRIMARY KEY,
+    sender_id INTEGER,
+    receiver_id INTEGER,
+    content TEXT,
+    created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
+    is_notification BOOLEAN DEFAULT false,
+    FOREIGN KEY (sender_id) REFERENCES users(id),
+    FOREIGN KEY (receiver_id) REFERENCES users(id)
 );
 
 CREATE TABLE photos (
