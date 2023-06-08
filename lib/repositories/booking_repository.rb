@@ -40,7 +40,19 @@ class BookingRepository
         result = DatabaseConnection.exec_params(query, [id])
   
         return nil
-      end
+    end
+
+    def self.booked_dates(space_id, start_date, end_date)
+      availability = DatabaseConnection.exec_params('SELECT start_date, end_date FROM spaces WHERE id = $1', [space_id]).first
+  
+      space_start_date = Date.parse(availability['start_date'])
+      space_end_date = Date.parse(availability['end_date'])
+  
+      # Determine the booked dates by finding the intersection between the availability dates and the booking dates
+      booked_dates = (space_start_date..space_end_date).to_a & (start_date..end_date).to_a
+  
+      booked_dates
+    end
       
     private
 

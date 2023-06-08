@@ -12,6 +12,12 @@ class Spaces < Sinatra::Base
   get '/space/:space_id/new_booking' do
     redirect '/login' unless logged_in?
 
+    space_id = params[:space_id].to_i
+    start_date = Date.today
+
+    # Retrieve the booked dates for the space based on the availability and the selected start_date and end_date
+    @booked_dates = BookingRepository.booked_dates(space_id, start_date, end_date)
+
     erb :new_booking
   end 
 

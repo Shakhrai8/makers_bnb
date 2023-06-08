@@ -1,44 +1,29 @@
-/* Global Styles */
 body {
   font-family: 'Roboto', sans-serif;
   font-size: 16px;
   line-height: 1.5;
   background-color: #0e0e0e;
   color: #fff;
+  margin: 0;
 }
 
-header {
+.container {
+  padding: 20px;
+}
+
+.banner {
   background-image: linear-gradient(90deg, #29abe0, #1e7ea8);
   padding: 20px;
   text-align: center;
 }
 
-.banner {
-  padding: 50px 0;
-  text-align: center;
-  background-color: #0e5d80; /* Adjust the banner background color */
-  color: #fff;
-  position: relative;
-  width: 100%;
-  height: 200px; /* Adjust the height as needed */
-  overflow: hidden;
-}
-
-.banner .heading {
-  font-size: 48px;
-  margin-bottom: 10px;
-}
-
-.banner .tagline {
-  font-size: 24px;
-  margin-bottom: 20px;
+.banner h1 {
+  font-size: 32px;
+  margin: 0;
 }
 
 .space-info {
   display: flex;
-  justify-content: space-between;
-  align-items: flex-start;
-  margin: 40px 0;
 }
 
 .space-details {
@@ -59,21 +44,11 @@ header {
 
 .photo-gallery {
   flex: 1;
-  /* Add styling for the photo gallery */
 }
 
-.weather-info {
-  margin-top: 40px;
-}
-
-.weather-info .info-heading {
-  font-size: 24px;
-  margin: 0;
-  margin-bottom: 10px;
-}
-
-.weather-info .info-text {
-  margin: 0;
+.gallery-image {
+  width: 100%;
+  height: auto;
   margin-bottom: 20px;
 }
 
@@ -87,7 +62,8 @@ header {
 
 .edit-button,
 .delete-button,
-.book-button {
+.book-button,
+.add-photo-button {
   display: inline-block;
   padding: 10px 20px;
   font-size: 18px;
@@ -103,9 +79,33 @@ header {
 
 .edit-button:hover,
 .delete-button:hover,
-.book-button:hover {
+.book-button:hover,
+.add-photo-button:hover {
   background-color: #0e5d80;
   transform: scale(1.05);
+}
+
+.weather-banner {
+  position: relative;
+}
+
+.weather-background {
+  width: 100%;
+  height: auto;
+}
+
+.weather-overlay {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  background-color: rgba(0, 0, 0, 0.6);
+  padding: 20px;
+}
+
+.weather-overlay h2 {
+  margin-bottom: 10px;
+  font-size: 24px;
+  font-weight: bold;
 }
 
 .back-button {
@@ -115,36 +115,3 @@ header {
   color: #fff;
   text-decoration: none;
 }
-
-/* Additional styles for the weather banner */
-.banner img {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.banner .weather-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  background-color: rgba(0, 0, 0, 0.6); /* Adjust the overlay color as needed */
-  color: #fff;
-  padding: 20px;
-}
-
-.banner .weather-overlay h2 {
-  margin-bottom: 10px;
-  font-size: 24px;
-  font-weight: bold;
-}
-
-/* Additional styling and adjustments as needed */
