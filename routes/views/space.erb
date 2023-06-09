@@ -2,43 +2,49 @@
 <html>
 <head>
   <title>MAKERS BnB - <%= @space.name %></title>
+  <link rel="stylesheet" type="text/css" href="https://unpkg.com/tiny-slider/dist/tiny-slider.css">
   <link rel="stylesheet" type="text/css" href="/space_style.css">
-  <link rel="stylesheet" type="text/css" href="/back_button_style.css">
 </head>
 <body>
-  <div class="container">
+  <div class="container property-page">
     <div class="banner">
       <h1><%= @space.name %></h1>
     </div>
     <div class="content">
-      <div class="space-info">
-        <div class="space-details">
+      <div class="property-info">
+        <div class="property-details">
           <h2 class="info-heading">Price:</h2>
           <p class="info-text">$<%= @space.price %></p>
           <h2 class="info-heading">Availability:</h2>
           <p class="info-text">Start Date: <%= @space.start_date %></p>
           <p class="info-text">End Date: <%= @space.end_date %></p>
         </div>
-        <div class="photo-gallery">
-          <% @photos.each do |photo| %>
-            <img src="<%= photo.photo_url %>" alt="Property Image" class="gallery-image">
-          <% end %>
+        <div class="photo-slider">
+          <div class="my-slider">
+            <% @photos.each do |photo| %>
+              <div class="slide">
+                <img src="<%= photo.photo_url %>" alt="Property Image" class="gallery-image">
+              </div>
+            <% end %>
+          </div>
         </div>
       </div>
       <div class="buttons">
-        <!-- Edit button -->
-        <a href="/space/<%= @space.id %>/edit" class="edit-button">Edit</a>
+        <% if current_user.id && current_user.id == @space.user_id %>
+          <!-- Edit button -->
+          <a href="/space/<%= @space.id %>/edit" class="edit-button">Edit</a>
 
-        <!-- Delete button -->
-        <form action="/space/<%= @space.id %>/delete" method="get">
-          <button type="submit" class="delete-button">Delete</button>
-        </form>
-
-        <!-- Book button -->
-        <a href="/space/<%= @space.id %>/new_booking" class="book-button">Book</a>
-        
-        <!-- Add photo button -->
-        <a href="#" class="add-photo-button">Add Photo</a>
+          <!-- Delete button -->
+          <form action="/space/<%= @space.id %>/delete" method="get">
+            <button type="submit" class="delete-button">Delete</button>
+          </form>
+          
+          <!-- Add photo button -->
+          <a href="#" class="add-photo-button">Add Photo</a>
+        <% else %>
+          <!-- Book button -->
+          <a href="/space/<%= @space.id %>/new_booking" class="book-button">Book</a>
+        <% end %>
       </div>
     </div>
     <div class="weather-banner">
@@ -59,5 +65,7 @@
     </div>
     <a href="/profile" class="back-button">Back to Profile</a>
   </div>
+  <script src="https://unpkg.com/tiny-slider/dist/min/tiny-slider.js"></script>
+  <script src="/assets/script.js"></script>
 </body>
 </html>

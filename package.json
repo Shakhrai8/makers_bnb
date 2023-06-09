@@ -1,0 +1,18 @@
+{
+  "name": "makersbnb-ruby-seed",
+  "version": "1.0.0",
+  "description": "This repo contains the seed codebase for the MakersBnB project in Ruby (using Sinatra and RSpec).",
+  "main": "index.js",
+  "directories": {
+    "lib": "lib"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "tiny-slider": "^2.9.4"
+  }
+}

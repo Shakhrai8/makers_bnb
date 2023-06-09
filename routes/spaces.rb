@@ -60,9 +60,10 @@ class Spaces < Sinatra::Base
     space_id = params[:space_id].to_i
     @space = SpacesRepository.find(space_id)
     @photos = PhotoRepository.find_by_space_id(space_id)
-  
+    this = @space.city
+    
     # Retrieve weather information for the city
-    weather_info = get_weather_info(@space.city)
+    weather_info = get_weather_info(this)
     @temperature = weather_info['temperature']
     @weather_description = weather_info['description']
   
@@ -73,7 +74,7 @@ class Spaces < Sinatra::Base
     )
     photo = Unsplash::Photo.random(query: @space.city)
     @background_image = photo.urls.regular
-  
+
     erb :space
   end
   
@@ -137,6 +138,10 @@ class Spaces < Sinatra::Base
 
   def logged_in?
     !session[:user_id].nil?
+  end
+
+  def current_user
+    UserRepository.find(session[:user_id])
   end
 
   def get_weather_info(city)
