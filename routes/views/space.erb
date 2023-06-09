@@ -6,64 +6,66 @@
   <link rel="stylesheet" type="text/css" href="/space_style.css">
 </head>
 <body>
-  <div class="container property-page">
-    <div class="banner">
+  <img src="<%= @background_image %>" alt="Background Image" class="background-image">
+  <div class="container">
+    <div class="top-banner">
       <h1><%= @space.name %></h1>
     </div>
     <div class="content">
-      <div class="property-info">
+      <div class="photo-slider">
+        <div class="my-slider">
+          <% @photos.each do |photo| %>
+            <div class="slide">
+              <img src="<%= photo.photo_url %>" alt="Property Image" class="gallery-image">
+            </div>
+          <% end %>
+        </div>
+      </div>
+      <div class="info-container">
         <div class="property-details">
-          <h2 class="info-heading">Price:</h2>
-          <p class="info-text">$<%= @space.price %></p>
+          <h2 class="info-heading">Price per night:</h2>
+          <p class="info-text">£<%= @space.price %></p>
           <h2 class="info-heading">Availability:</h2>
-          <p class="info-text">Start Date: <%= @space.start_date %></p>
-          <p class="info-text">End Date: <%= @space.end_date %></p>
+          <p class="info-text">From: <%= @space.start_date %> to: <%= @space.end_date %> </p>
+          <h2 class="info-heading">Description:</h2>
+          <p class="info-text"><%= @space.description %></p>
         </div>
-        <div class="photo-slider">
-          <div class="my-slider">
-            <% @photos.each do |photo| %>
-              <div class="slide">
-                <img src="<%= photo.photo_url %>" alt="Property Image" class="gallery-image">
-              </div>
-            <% end %>
-          </div>
-        </div>
-      </div>
-      <div class="buttons">
-        <% if current_user && current_user.id == @space.user_id.to_i %>
-          <!-- Edit button -->
-          <a href="/space/<%= @space.id %>/edit" class="edit-button">Edit</a>
+        <div class="buttons">
+          <% if current_user && current_user.id == @space.user_id.to_i %>
+            <!-- Edit button -->
+            <a href="/space/<%= @space.id %>/edit" class="edit-button">Edit</a>
 
-          <!-- Delete button -->
-          <form action="/space/<%= @space.id %>/delete" method="get">
-            <button type="submit" class="delete-button">Delete</button>
-          </form>
-          
-          <!-- Add photo button -->
-          <a href="#" class="add-photo-button">Add Photo</a>
-        <% else %>
-          <!-- Book button -->
-          <a href="/space/<%= @space.id %>/new_booking" class="book-button">Book</a>
-        <% end %>
+            <!-- Delete button -->
+            <form action="/space/<%= @space.id %>/delete" method="get">
+              <button type="submit" class="delete-button">Delete</button>
+            </form>
+            
+            <!-- Add photo button -->
+            <a href="#" class="add-photo-button">Add Photo</a>
+          <% else %>
+            <!-- Book button -->
+            <a href="/space/<%= @space.id %>/new_booking" class="book-button">Book</a>
+          <% end %>
+        </div>
       </div>
     </div>
-    <div class="weather-banner">
-      <% if @background_image %>
-        <img src="<%= @background_image %>" alt="Background Image" class="weather-background">
-      <% end %>
-      <div class="weather-overlay">
-        <% if @space.city %>
-          <h2><%= @space.city %> Weather</h2>
-        <% end %>
-        <% if @temperature && @weather_description %>
-          <p>Temperature: <%= @temperature %>°C</p>
-          <p>Description: <%= @weather_description %></p>
-        <% else %>
-          <p>Weather information currently unavailable.</p>
-        <% end %>
+    <div class="weather-container">
+      <div class="weather-info">
+        <div class="weather-overlay">
+          <% if @space.city %>
+            <h2 class="weather-heading"><%= @space.city %> Weather</h2>
+          <% end %>
+          <% if @temperature && @weather_description %>
+            <p class="weather-text">Temperature: <%= @temperature %>°C</p>
+            <p class="weather-text">Description: <%= @weather_description %></p>
+          <% else %>
+            <p class="weather-text">Weather information currently unavailable.</p>
+          <% end %>
+        </div>
       </div>
     </div>
-    <a href="/profile" class="back-button">Back to Profile</a>
+    <a href="/profile" class="back-button">My Profile</a>
+    <a href="/feed" class="back-button">Global Feed</a>
   </div>
   <script src="https://unpkg.com/tiny-slider/dist/min/tiny-slider.js"></script>
   <script src="/assets/script.js"></script>
