@@ -1,4 +1,13 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Booking Requests</title>
+  <link rel="stylesheet" type="text/css" href="/booking_requests.css">
+</head>
 <h1>Incoming Requests</h1>
+<% if @incoming_requests.empty? %>
+  <p>You currently have no booking@incoming_requests requests.</p>
+<% else %>
 <% @incoming_requests.each do |request| %>
   <div>
     <h2>Booking Request ID: <%= request.id %></h2>
@@ -8,19 +17,27 @@
     <p>Status: <%= request.status %></p>
     <div class="actions">
       <% if request.status == 'pending' %>
+      <div class="approve-decline">
         <form action="/requests/approve/<%= request.id %>" method="post">
           <button type="submit">Approve</button>
         </form>
         <form action="/requests/decline/<%= request.id %>" method="post">
           <button type="submit">Decline</button>
         </form>
+      </div>
       <% end %>
+      <div class="view-request">
       <a href="/space/<%= request.space_id %>/new_booking/<%= request.id %>">View Request</a>
+      </div>
     </div>
   </div>
 <% end %>
+<% end %>
 
 <h1>Sent Requests</h1>
+<% if @sent_requests.empty? %>
+  <p>You currently have no sent requests.</p>
+<% else %>
 <% @sent_requests.each do |request| %>
   <div>
     <h2>Booking Request ID: <%= request.id %></h2>
@@ -30,4 +47,5 @@
     <p>Status: <%= request.status %></p>
     <a href="/space/<%= request.space_id %>/new_booking/<%= request.id %>">View Request</a>
   </div>
+<% end %>
 <% end %>
