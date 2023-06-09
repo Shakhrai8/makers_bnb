@@ -2,7 +2,7 @@ require_relative '../models/photo'
 
 class PhotoRepository
   def self.create(space_id, photo_url)
-    query = "INSERT INTO photos (space_id, photo_url) VALUES ($1, $2);"
+    query = "INSERT INTO photos (id, space_id, photo_url) VALUES ($1, $2);"
     DatabaseConnection.exec_params(query, [space_id, photo_url])
 
     return nil

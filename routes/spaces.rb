@@ -77,9 +77,16 @@ class Spaces < Sinatra::Base
 
     erb :space
   end
+
+  post '/space/:space_id/photos/add' do
+    space_id = params[:space_id].to_i
+    photo_url = params[:photo_url]
   
+    # Call the create method from the PhotoRepository to add the photo
+    PhotoRepository.create(space_id, photo_url)
   
-  
+    redirect back
+  end
   
   get '/space/:space_id/edit' do
     redirect '/login' unless logged_in?

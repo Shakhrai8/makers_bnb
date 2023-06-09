@@ -41,7 +41,10 @@
             </form>
             
             <!-- Add photo button -->
-            <a href="#" class="add-photo-button">Add Photo</a>
+            <form action="/space/<%= @space.id %>/photos/add" method="post" class="add-photo-form">
+            <input type="text" name="photo_url" placeholder="Enter photo URL">
+            <button type="submit">Add</button>
+            </form>
           <% else %>
             <!-- Book button -->
             <a href="/space/<%= @space.id %>/new_booking" class="book-button">Book</a>
