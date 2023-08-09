@@ -55,9 +55,9 @@ CREATE TABLE messages (
 );
 
 CREATE TABLE photos (
-  id INT PRIMARY KEY,
+  id SERIAL PRIMARY KEY,
   space_id INT,
-  photo_url VARCHAR(255),
+  photo_url TEXT,
   FOREIGN KEY (space_id) REFERENCES spaces(id)
 );
 
