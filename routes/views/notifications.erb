@@ -1,14 +1,25 @@
-<h1>Notifications</h1>
+<!DOCTYPE html>
+<html>
+<head>
+  <title>Booking Requests</title>
+  <link rel="stylesheet" type="text/css" href="/notifications.css">
+  <link rel="stylesheet" type="text/css" href="/cancel_button_style.css">
+</head>
+<body>
+  <a href="/profile" class="cancel-button">Cancel</a>
+  <h1>Notifications</h1>
 
-<% if notifications.empty? %>
-  <p>No new notifications.</p>
-<% else %>
-  <ul>
-    <% notifications.each do |notification| %>
-      <li>
-        <strong><%= @sender_name %></strong>:
-        <%= notification.content %>
-      </li>
-    <% end %>
-  </ul>
-<% end %>
+  <% if notifications.empty? %>
+    <p>No new notifications.</p>
+  <% else %>
+    <ul>
+      <% notifications.each do |notification| %>
+        <li>
+          <strong><%= @sender_name %></strong>:
+          <%= notification.content %>
+        </li>
+      <% end %>
+    </ul>
+  <% end %>
+</body>
+</html>
