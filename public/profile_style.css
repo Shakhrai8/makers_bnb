@@ -1,9 +1,9 @@
 /* Global Styles */
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  background-image: url("/images/image1.jpg"); /* Set the background image */
+  background-image: url("/images/image1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
   color: #333; /* Dark text color */
@@ -16,8 +16,8 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  min-height: 100vh; /* Use min-height instead of height for responsiveness */
-  background-color: transparent; /* Set the background color to transparent */
+  min-height: 100vh;
+  background-color: transparent;
   color: #333;
 }
 
@@ -39,6 +39,7 @@ body {
   margin: 0;
 }
 
+.requests-button,
 .logout-button,
 .feed-button {
   padding: 10px 20px;
@@ -53,6 +54,7 @@ body {
   transition: background-color 0.3s ease;
 }
 
+.requests-button:hover,
 .logout-button:hover,
 .feed-button:hover {
   background-color: #0056b3;
@@ -60,12 +62,11 @@ body {
 }
 
 .profile-box {
-  /* Add styles for the profile box here */
   padding: 20px;
-  border: 2px solid #007bff; /* Blue border */
+  border: 2px solid #007bff;
   border-radius: 10px;
-  background-color: rgba(255, 255, 255, 0.9); /* Semi-transparent white background */
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  background-color: rgba(255, 255, 255, 0.9);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .profile-info {
@@ -94,7 +95,7 @@ body {
   display: inline-block;
   padding: 10px 20px;
   font-size: 18px;
-  background-color: #007bff; /* Blue button color */
+  background-color: #007bff;
   border: none;
   border-radius: 5px;
   color: #fff;
@@ -106,7 +107,7 @@ body {
 
 .spaces-button:hover,
 .bookings-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #0056b3;
   transform: scale(1.05);
 }
 
@@ -123,7 +124,7 @@ body {
   margin: 20px;
   background-color: #fff;
   border-radius: 5px;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* Add a subtle box shadow */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 .box-heading {
@@ -135,7 +136,7 @@ body {
   display: inline-block;
   padding: 10px 20px;
   font-size: 18px;
-  background-color: #007bff; /* Blue button color */
+  background-color: #007bff;
   border: none;
   border-radius: 5px;
   color: #fff;
@@ -146,6 +147,6 @@ body {
 }
 
 .create-button:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #0056b3;
   transform: scale(1.05);
 }
