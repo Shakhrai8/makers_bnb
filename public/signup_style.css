@@ -1,6 +1,5 @@
-/* Global Styles */
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 16px;
   line-height: 1.5;
   background-color: #0e0e0e;
@@ -18,25 +17,30 @@ body {
   background-size: cover;
   background-position: center;
   color: #fff;
-  overflow: hidden; /* Hide overflowing elements */
-  animation: slideshow 40s infinite; /* Change images every 20 seconds */
+  overflow: hidden;
+  animation: slideshow 40s infinite;
 }
 
 @keyframes slideshow {
-  0%, 19.99% {
-    background-image: url(/images/image1.jpg); /* Change to the path of your first image */
+  0%,
+  19.99% {
+    background-image: url(/images/image1.jpg);
   }
-  20%, 39.99% {
-    background-image: url(/images/image2.jpg); /* Change to the path of your second image */
+  20%,
+  39.99% {
+    background-image: url(/images/image2.jpg);
   }
-  40%, 59.99% {
-    background-image: url(/images/image3.jpg); /* Change to the path of your third image */
+  40%,
+  59.99% {
+    background-image: url(/images/image3.jpg);
   }
-  60%, 79.99% {
-    background-image: url(/images/image4.jpg); /* Change to the path of your fourth image */
+  60%,
+  79.99% {
+    background-image: url(/images/image4.jpg);
   }
-  80%, 99.99% {
-    background-image: url(/images/image5.jpg); /* Change to the path of your fifth image */
+  80%,
+  99.99% {
+    background-image: url(/images/image5.jpg);
   }
 }
 
@@ -46,7 +50,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Adjust the transparency here */
+  background-color: rgba(0, 0, 0, 0.5);
 }
 
 .content {
@@ -95,34 +99,32 @@ body {
 
 .signup-form input[type="submit"]:hover {
   background-color: #0e5d80;
-  transform: scale(1.05); /* Add a slight scaling effect on hover */
+  transform: scale(1.05);
 }
 
-/* Additional Visual Enhancements */
 .container:before {
-  content: '';
+  content: "";
   position: absolute;
   top: -10px;
   left: -10px;
   right: -10px;
   bottom: -10px;
-  border: 2px solid #29abe0; /* Add a border around the container */
-  pointer-events: none; /* Ensure the border doesn't affect interactivity */
-}
-
-.container:after {
-  content: '';
-  position: absolute;
-  width: 100%;
-  height: 100%;
-  background-image: radial-gradient(#000000 10%, transparent 60%); /* Add a radial gradient overlay */
-  opacity: 0.2; /* Adjust the opacity of the overlay */
+  border: 2px solid #29abe0;
   pointer-events: none;
 }
 
-/* Animations */
+.container:after {
+  content: "";
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: radial-gradient(#000000 10%, transparent 60%);
+  opacity: 0.2;
+  pointer-events: none;
+}
+
 .signup-form input[type="submit"] {
-  animation: pulse 2s infinite alternate; /* Add a pulsing animation */
+  animation: pulse 2s infinite alternate;
 }
 
 @keyframes pulse {

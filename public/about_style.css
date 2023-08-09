@@ -1,6 +1,5 @@
-/* Global Styles */
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 16px;
   line-height: 1.5;
   background-color: #0e0e0e;
@@ -15,7 +14,7 @@ body {
   align-items: center;
   justify-content: center;
   height: 100vh;
-  background-image: url('https://cdn.trendir.com/wp-content/uploads/2019/11/cozy-dark-bedroom.jpg');
+  background-image: url("https://cdn.trendir.com/wp-content/uploads/2019/11/cozy-dark-bedroom.jpg");
   background-size: cover;
   background-position: center;
   color: #fff;

@@ -8,7 +8,6 @@
   <h1>Delete Booking</h1>
   <% if logged_in? %>
     <% if @booking %>
-      <!-- Display booking details -->
       <p>Are you sure you want to delete the following booking?</p>
       <p>Booking ID: <%= @booking.id %></p>
       <p>Space ID: <%= @booking.space_id %></p>
@@ -17,17 +16,13 @@
       <p>End Date: <%= @booking.end_date %></p>
       <p>Contents: <%= @booking.contents %></p>
       <p>Status: <%= @booking.status %></p>
-      <!-- Delete form -->
       <form action="/space/<%= @booking.space_id %>/new_booking/<%= @booking.id %>/delete" method="post">
-        <!-- Submit button -->
         <input type="submit" value="Delete">
       </form>
     <% else %>
-      <!-- Booking not found message -->
       <p>Booking not found.</p>
     <% end %>
   <% else %>
-    <!-- Redirect message -->
     <p>You must be logged in to delete a booking. Please <a href="/login">log in</a>.</p>
   <% end %>
 </body>

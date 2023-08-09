@@ -58,21 +58,17 @@
 
         <div class="buttons">
           <% if current_user && current_user.id == @space.user_id.to_i %>
-            <!-- Edit button -->
             <a href="/space/<%= @space.id %>/edit" class="edit-button">Edit</a>
 
-            <!-- Delete button -->
             <form action="/space/<%= @space.id %>/delete" method="get">
               <button type="submit" class="delete-button">Delete</button>
             </form>
             
-            <!-- Add photo button -->
             <form action="/space/<%= @space.id %>/photos/add" method="post" class="add-photo-form">
             <input type="text" name="photo_url" placeholder="Enter photo URL">
             <button type="submit">Add</button>
             </form>
           <% else %>
-            <!-- Book button -->
             <a href="/space/<%= @space.id %>/new_booking" class="book-button">Book</a>
           <% end %>
         </div>

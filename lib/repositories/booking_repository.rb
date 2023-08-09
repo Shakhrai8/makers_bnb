@@ -48,14 +48,12 @@ class BookingRepository
       space_start_date = Date.parse(availability['start_date'])
       space_end_date = Date.parse(availability['end_date'])
   
-      # Determine the booked dates by finding the intersection between the availability dates and the booking dates
       booked_dates = (space_start_date..space_end_date).to_a & (start_date..end_date).to_a
   
       booked_dates
     end
 
     def self.incoming_requests(user_id)
-      # Retrieve incoming requests for the user
       query = 'SELECT * FROM bookings WHERE space_id IN (SELECT id FROM spaces WHERE user_id = $1) AND status = $2'
       params = [user_id, 'pending']
       result = DatabaseConnection.exec_params(query, params)
@@ -84,7 +82,6 @@ class BookingRepository
     end
   
     def self.sent_requests(user_id)
-      # Retrieve sent requests by the user
       query = 'SELECT * FROM bookings WHERE user_id = $1'
       result = DatabaseConnection.exec_params(query, [user_id])
   

@@ -72,20 +72,15 @@ class Users < Sinatra::Base
 
   post '/requests/approve/:id' do
     if logged_in?
-      # Retrieve the request ID from the URL parameter
       request_id = params[:id]
     
-      # Update the status of the request to "accepted" in the database
       BookingRepository.update_status(request_id, 'accepted')
     
-      # Retrieve the booking details for the request
       booking = BookingRepository.find(request_id)
     
-      # Send a notification to the user who made the request
       message = "Your booking request for #{BookingRepository.find_space_name(booking.space_id)} has been accepted."
-      MessageRepository.create_notification(booking.user_id, current_user.id, message)  # Assuming current_user represents the current user
+      MessageRepository.create_notification(booking.user_id, current_user.id, message)  
     
-      # Redirect back to the requests page or show a success message
       redirect 'profile/requests'
     else
       redirect '/login'
@@ -94,20 +89,15 @@ class Users < Sinatra::Base
   
   post '/requests/decline/:id' do
     if logged_in?
-      # Retrieve the request ID from the URL parameter
       request_id = params[:id]
     
-      # Update the status of the request to "declined" in the database
       BookingRepository.update_status(request_id, 'declined')
     
-      # Retrieve the booking details for the request
       booking = BookingRepository.find(request_id)
     
-      # Send a notification to the user who made the request
       message = "Your booking request for #{BookingRepository.find_space_name(booking.space_id)} has been declined."
-      MessageRepository.create_notification(booking.user_id, current_user.id, message)  # Assuming current_user represents the current user
+      MessageRepository.create_notification(booking.user_id, current_user.id, message)  
     
-      # Redirect back to the requests page or show a success message
       redirect 'profile/requests'
     else
       redirect '/login'
@@ -116,15 +106,13 @@ class Users < Sinatra::Base
   
   get '/profile/notifications' do
     if logged_in?
-      user_id = session[:user_id] # Replace with your own logic to retrieve the current user's ID
+      user_id = session[:user_id] 
     
-      # Fetch the notifications for the user
       notifications = MessageRepository.find_notifications(user_id)
 
       search = UserRepository.find(notifications[0].sender_id)
       @sender_name = search.username
     
-      # Render the profile/notifications view
       erb :notifications, locals: { notifications: notifications }
     else
       redirect '/login'

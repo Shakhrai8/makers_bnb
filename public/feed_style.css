@@ -1,21 +1,17 @@
-/* feed_style.css */
-
-/* Global Styles */
 body {
-  font-family: 'Roboto', sans-serif;
+  font-family: "Roboto", sans-serif;
   font-size: 16px;
   line-height: 1.5;
-  background-image: url("/images/image1.jpg"); /* Set the background image */
+  background-image: url("/images/image1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  color: #333; /* Dark text color */
+  color: #333;
 }
 
-/* Main Styles */
 .container {
   display: flex;
-  min-height: 100vh; /* Use min-height instead of height for responsiveness */
-  background-color: transparent; /* Set the background color to transparent */
+  min-height: 100vh;
+  background-color: transparent;
   color: #333;
 }
 
@@ -31,7 +27,7 @@ body {
   display: block;
   padding: 10px 20px;
   font-size: 18px;
-  background-color: #007bff; /* Blue button color */
+  background-color: #007bff;
   border: none;
   border-radius: 5px;
   color: #fff;
@@ -42,7 +38,7 @@ body {
 }
 
 .menu a:hover {
-  background-color: #0056b3; /* Darker blue on hover */
+  background-color: #0056b3;
   transform: scale(1.05);
 }
 
@@ -95,5 +91,3 @@ body {
 .book-button:hover {
   background-color: #45a049;
 }
-
-/* Additional styles specific to the feed page can be added below */

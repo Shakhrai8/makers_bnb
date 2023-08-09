@@ -62,12 +62,10 @@ class Spaces < Sinatra::Base
     @photos = PhotoRepository.find_by_space_id(space_id)
     this = @space.city
     
-    # Retrieve weather information for the city
     weather_info = get_weather_info(this)
     @temperature = weather_info['temperature']
     @weather_description = weather_info['description']
   
-    # Retrieve a random background image from Unsplash
     unsplash = Unsplash::Client.new(
       access_key: Unsplash.configuration.application_access_key,
       secret_key: Unsplash.configuration.application_secret
@@ -82,7 +80,6 @@ class Spaces < Sinatra::Base
     space_id = params[:space_id].to_i
     photo_url = params[:photo_url]
   
-    # Call the create method from the PhotoRepository to add the photo
     PhotoRepository.create(space_id, photo_url)
   
     redirect back
@@ -183,17 +180,14 @@ class Spaces < Sinatra::Base
     current_date = start_date
 
     while current_date <= end_date
-      # Create a new availability record for each date
       availability = Availability.new
       availability.space_id = space_id
       availability.date = current_date.to_s
   
-      # Save the availability record to the database
       sql = "INSERT INTO availability (space_id, date) VALUES ($1, $2)"
       params = [availability.space_id, availability.date]
       DatabaseConnection.exec_params(sql, params)
   
-      # Increment the current date by 1 day
       current_date = current_date.next
     end
   end 

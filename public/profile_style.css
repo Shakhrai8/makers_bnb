@@ -1,4 +1,3 @@
-/* Global Styles */
 body {
   font-family: "Roboto", sans-serif;
   font-size: 16px;
@@ -6,10 +5,9 @@ body {
   background-image: url("/images/image1.jpg");
   background-repeat: no-repeat;
   background-size: cover;
-  color: #333; /* Dark text color */
+  color: #333;
 }
 
-/* Main Styles */
 .container {
   position: relative;
   display: flex;

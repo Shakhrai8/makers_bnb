@@ -83,7 +83,6 @@
       dateInput.value = selectedDate.toISOString().split('T')[0];
     }
   
-    // Show error message if dates are unavailable
     if (error === 'dates_unavailable') {
       Swal.fire({
         icon: 'error',

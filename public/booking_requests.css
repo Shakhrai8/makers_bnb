@@ -1,85 +1,84 @@
 body {
-    font-family: 'Roboto', sans-serif;
-    font-size: 16px;
-    line-height: 1.5;
-    background-color: #f2f2f2;
-    color: #333;
-    padding: 20px;
-  }
-  
-  h1 {
-    font-size: 24px;
-    margin-bottom: 10px;
-  }
-  
-  h2 {
-    font-size: 20px;
-    margin-bottom: 5px;
-  }
-  
-  p {
-    margin-bottom: 5px;
-  }
-  
-  .actions {
-    margin-top: 10px;
-    display: flex;
-    gap: 10px;
-  }
-  
-  .actions {
-    margin-top: 10px;
-    display: flex;
-    flex-direction: column;
-    align-items: flex-start;
-    gap: 10px;
-  }
-  
-  .approve-decline {
-    display: flex;
-    gap: 10px;
-  }
-  .view-decline {
-    display: flex;
-    gap: 10px;
-  }
-  
-  button {
-    padding: 5px 10px;
-    font-size: 16px;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  a {
-    display: inline-block;
-    padding: 5px 10px;
-    font-size: 16px;
-    background-color: #007bff;
-    border: none;
-    border-radius: 5px;
-    color: #fff;
-    text-decoration: none;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  button:hover,
-  a:hover {
-    background-color: #0056b3;
-    transform: scale(1.05);
-  }
-  
-  div {
-    background-color: #fff;
-    padding: 20px;
-    margin-bottom: 20px;
-    border-radius: 5px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-  }
-  
+  font-family: "Roboto", sans-serif;
+  font-size: 16px;
+  line-height: 1.5;
+  background-color: #f2f2f2;
+  color: #333;
+  padding: 20px;
+}
+
+h1 {
+  font-size: 24px;
+  margin-bottom: 10px;
+}
+
+h2 {
+  font-size: 20px;
+  margin-bottom: 5px;
+}
+
+p {
+  margin-bottom: 5px;
+}
+
+.actions {
+  margin-top: 10px;
+  display: flex;
+  gap: 10px;
+}
+
+.actions {
+  margin-top: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  gap: 10px;
+}
+
+.approve-decline {
+  display: flex;
+  gap: 10px;
+}
+.view-decline {
+  display: flex;
+  gap: 10px;
+}
+
+button {
+  padding: 5px 10px;
+  font-size: 16px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+a {
+  display: inline-block;
+  padding: 5px 10px;
+  font-size: 16px;
+  background-color: #007bff;
+  border: none;
+  border-radius: 5px;
+  color: #fff;
+  text-decoration: none;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+button:hover,
+a:hover {
+  background-color: #0056b3;
+  transform: scale(1.05);
+}
+
+div {
+  background-color: #fff;
+  padding: 20px;
+  margin-bottom: 20px;
+  border-radius: 5px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}

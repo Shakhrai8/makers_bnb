@@ -2,7 +2,6 @@ require_relative '../models/message'
 
 class MessageRepository
   def self.create_notification(sender_id, receiver_id, content)
-    # Assuming you have a 'notifications' column in the 'messages' table to differentiate notifications
     query = 'INSERT INTO messages (sender_id, receiver_id, content, is_notification) VALUES ($1, $2, $3, true);'
     params = [sender_id, receiver_id, content]
     DatabaseConnection.exec_params(query, params)

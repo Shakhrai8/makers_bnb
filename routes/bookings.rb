@@ -34,15 +34,10 @@ class Bookings < Sinatra::Base
 
       BookingRepository.create(booking.space_id, booking.user_id, booking.start_date, booking.end_date, booking.contents)
       result = BookingRepository.all
-
-      # Perform additional logic for sending the request to the owner
-      # This could include sending a notification or updating a request status
   
       # Show a success message to the user
       erb :booking_success, locals: { space_id: result.last.space_id, booking_id: result.last.id }
     else
-      # Dates not available, handle accordingly (e.g., show an error message)
-      # You can redirect to the new_booking page with an error message
       redirect "/space/#{space_id}/new_booking?error=dates_unavailable"
     end
   end
