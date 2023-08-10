@@ -91,3 +91,60 @@ body {
 .book-button:hover {
   background-color: #45a049;
 }
+
+/* Mobile Styles */
+@media screen and (max-width: 768px) {
+  .container {
+    flex-direction: column;
+  }
+
+  .menu {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    padding: 10px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  }
+
+  .menu a {
+    margin-bottom: 0;
+    margin-right: 10px;
+    font-size: 16px;
+    padding: 8px 16px;
+  }
+
+  .menu a:last-child {
+    margin-right: 0;
+  }
+
+  .content {
+    width: 100%;
+  }
+
+  .heading {
+    font-size: 28px;
+  }
+
+  .feed {
+    grid-template-columns: 1fr;
+    grid-gap: 10px;
+  }
+
+  .space-card {
+    padding: 15px;
+  }
+
+  .space-card h2 {
+    font-size: 16px;
+    margin-bottom: 8px;
+  }
+
+  .space-card p {
+    margin-bottom: 8px;
+  }
+
+  .book-button {
+    padding: 5px 10px;
+  }
+}
