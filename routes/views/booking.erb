@@ -3,23 +3,29 @@
 <head>
   <title>Booking Details</title>
   <link rel="stylesheet" type="text/css" href="/booking_id.css">
+  <link rel="stylesheet" type="text/css" href="/cancel_button_style.css">
 </head>
 <body>
-  <h1>Booking Details</h1>
-  <% if logged_in? %>
-    <% if @booking %>
-      <p>Reference ID: <%= @booking.id %></p>
-      <p>Space Name: <a href="/space/<%= @booking.space_id %>"> <%= @space.name %></a></p>
-      <p>Request From: <%= @user.username %></p>
-      <p>Start Date: <%= @booking.start_date %></p>
-      <p>End Date: <%= @booking.end_date %></p>
-      <p>Contents from requester: <%= @booking.contents %></p>
-      <p>Status: <%= @booking.status %></p>
+  <a href="/profile/requests" class="cancel-button">Cancel</a>
+  <div class="container">
+    <h1>Booking Details</h1>
+    <% if logged_in? %>
+      <% if @booking %>
+        <div class="booking-details">
+          <p><strong>Reference ID:</strong> <%= @booking.id %></p>
+          <p><strong>Space Name:</strong> <a href="/space/<%= @booking.space_id %>"> <%= @space.name %></a></p>
+          <p><strong>Requested By:</strong> <%= @user.username %></p>
+          <p><strong>Start Date:</strong> <%= @booking.start_date %></p>
+          <p><strong>End Date:</strong> <%= @booking.end_date %></p>
+          <p><strong>Message From Guest:</strong> <%= @booking.contents %></p>
+          <p><strong>Status:</strong> <%= @booking.status %></p>
+        </div>
+      <% else %>
+        <p class="error-message">Booking not found.</p>
+      <% end %>
     <% else %>
-      <p>Booking not found.</p>
+      <p class="redirect-message">You must be logged in to view booking details. Please <a href="/login">log in</a>.</p>
     <% end %>
-  <% else %>
-    <p>You must be logged in to view booking details. Please <a href="/login">log in</a>.</p>
-  <% end %>
+  </div>
 </body>
 </html>

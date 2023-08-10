@@ -4,15 +4,21 @@ body {
   line-height: 1.5;
   margin: 0;
   padding: 0;
+  background-color: #f4f4f4; /* Light background for a clear view */
 }
 
 h1 {
   text-align: center;
   margin: 20px 0;
+  color: #333; /* Dark shade for better visibility */
 }
 
-p {
-  margin-bottom: 10px;
+.booking-details p {
+  margin-bottom: 15px;
+  background-color: #fff;
+  padding: 10px 20px;
+  border-radius: 4px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 }
 
 a {
@@ -20,11 +26,18 @@ a {
   text-decoration: none;
 }
 
+a:hover {
+  text-decoration: underline;
+}
+
 .container {
   max-width: 800px;
-  margin: 0 auto;
+  margin: 40px auto;
   padding: 20px;
-  text-align: center;
+  text-align: left; /* Left alignment for better structure */
+  background-color: #fff;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
 }
 
 .error-message {
