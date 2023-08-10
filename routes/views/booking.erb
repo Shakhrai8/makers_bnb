@@ -8,12 +8,12 @@
   <h1>Booking Details</h1>
   <% if logged_in? %>
     <% if @booking %>
-      <p>Booking ID: <%= @booking.id %></p>
-      <p>Space ID: <%= @booking.space_id %></p>
-      <p>User ID: <%= @booking.user_id %></p>
+      <p>Reference ID: <%= @booking.id %></p>
+      <p>Space Name: <a href="/space/<%= @booking.space_id %>"> <%= @space.name %></a></p>
+      <p>Request From: <%= @user.username %></p>
       <p>Start Date: <%= @booking.start_date %></p>
       <p>End Date: <%= @booking.end_date %></p>
-      <p>Contents: <%= @booking.contents %></p>
+      <p>Contents from requester: <%= @booking.contents %></p>
       <p>Status: <%= @booking.status %></p>
     <% else %>
       <p>Booking not found.</p>

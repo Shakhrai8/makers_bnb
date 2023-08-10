@@ -47,6 +47,8 @@ class Bookings < Sinatra::Base
     space_id = params[:space_id]
     booking_id = params[:booking_id].to_i
     @booking = BookingRepository.find(booking_id)
+    @user = UserRepository.find(@booking.user_id)
+    @space = SpacesRepository.find(@booking.space_id)
 
     erb :booking
   end
