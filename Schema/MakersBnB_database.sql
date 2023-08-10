@@ -73,8 +73,8 @@ INSERT INTO spaces (name, city, description, price, start_date, end_date, create
 ('Paris Cottage', 'Paris', 'Entire house', '30.50', '2023-07-05', '2023-07-20', NOW(), NOW(), 2);
 
 INSERT INTO bookings (space_id, user_id, start_date, end_date, contents, status) VALUES
-(1, 1, '2023-06-05', '2023-06-10', 'I would like an extra bed', 'pending'),
-(2, 2, '2023-07-05', '2023-07-11', 'No requests', 'approved'); 
+(1, 2, '2023-06-05', '2023-06-10', 'I would like an extra bed', 'pending'),
+(2, 1, '2023-07-05', '2023-07-11', 'No requests', 'approved'); 
 
 
 INSERT INTO availability (space_id, date, is_available) VALUES
