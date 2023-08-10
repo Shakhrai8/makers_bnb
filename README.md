@@ -18,6 +18,10 @@ Please note that MakersBnB is currently in active development and some features 
 
 MakersBnB is a web application built using Sinatra that provides a platform for users to list and book rental spaces. It is inspired by Airbnb and allows users to create accounts, list available spaces, view space details, and make bookings.
 
+## Screenshots
+
+![](./public/screenshots.png)
+
 ## Features
 
 - User authentication: Users can sign up for a new account or log in to an existing account.
@@ -31,7 +35,7 @@ To run MakersBnB locally, follow these steps:
 
 1. Clone the repository: `git clone https://github.com/Shakhrai8/makers_bnb.git)`
 2. Change into the project directory: `cd makers_bnb`
-3. Install the dependencies: `bundle install`
+3. Install the dependencies: `bundle install` and `npm install`
 4. Set up the necessary environment variables by creating a `.env` file and adding the required values. 
 5. Start the application using Rackup: `rackup`
 6. Open your browser and visit: `http://localhost:9292`
