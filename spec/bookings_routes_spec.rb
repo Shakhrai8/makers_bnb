@@ -1,155 +1,135 @@
-require_relative 'database_helper'
 require 'rspec'
-require_relative '../app'
 require 'rack/test'
+require_relative 'database_helper'
+require_relative '../app'
 
-
-describe Spaces do
+RSpec.describe 'Bookings' do
   include Rack::Test::Methods
 
   def app
-    Spaces
+    Bookings
   end
 
-  let(:session) { { user_id: 1 } }
-
-  before do
-    allow_any_instance_of(Spaces).to receive(:session).and_return(session)
+  let(:booking_params) do
+    {
+      space_id: 1,
+      start_date: '2023-08-10',
+      end_date: '2023-08-15',
+      contents: 'Booking for a vacation'
+    }
   end
 
   before(:each) do
     reset_makers_bnb_table
   end
 
+  describe 'GET /space/:space_id/new_booking' do
+    context 'when user is logged in' do
+      before do
+        get "/space/#{booking_params[:space_id]}/new_booking", {}, { 'rack.session' => { user_id: 1 } }
+      end
 
-  describe "GET '/space/:space_id/new_booking'" do
-    context "when logged in" do
-
-      it "renders the new_booking view" do
-        get '/space/1/new_booking'
-
+      it 'renders the new booking page' do
+        expect(last_response.status).to eq(200)
         expect(last_response.body).to include('New Booking')
-        expect(last_response.body).to include('Start Date:')
-        expect(last_response.body).to include('End Date:')
-        expect(last_response.body).to include('Contents:')
-        expect(last_response.body).to include('Status:')
       end
     end
 
-    context "when not logged in" do
-      it "redirects to the login page" do
-        allow_any_instance_of(Spaces).to receive(:logged_in?).and_return(false)
-
-        get '/space/1/new_booking'
-
+    context 'when user is not logged in' do
+      it 'redirects to login page' do
+        get "/space/#{booking_params[:space_id]}/new_booking"
         expect(last_response).to be_redirect
-        expect(last_response.location).to include('/login')
+        follow_redirect!
+        expect(last_request.path).to eq('/login')
       end
     end
   end
 
-  describe "POST '/space/:space_id/new_booking'" do
-    context "when the booking exists" do
+  describe 'POST /space/:space_id/new_booking' do
+    context 'when dates are available' do
       before do
-        # Mock the BookingRepository's find method to return a booking
-        @booking_id = 789
-        @booking = double('Booking', id: @booking_id)
-        allow(BookingRepository).to receive(:find).with(@booking_id).and_return(@booking)
+        allow(BookingRepository).to receive(:all).and_return([double('Booking', id: 1, space_id: 1)])
+      end
 
-        # Perform the GET request
-        get "/space/123/new_booking/#{@booking_id}"
+      xit 'creates a new booking and shows success message' do
+        expect(BookingRepository).to receive(:create)
+        post "/space/#{booking_params[:space_id]}/new_booking", booking_params, { 'rack.session' => { user_id: 1 } }
+        expect(last_response).to be_redirect
+        follow_redirect!
+        expect(last_request.path).to eq("/space/#{booking_params[:space_id]}/new_booking")
       end
     end
 
-    context "when the booking does not exist" do
-        before do
-          # Mock the BookingRepository's find method to return nil
-          @booking_id = 999
-          allow(BookingRepository).to receive(:find).with(@booking_id).and_return(nil)
-
-          # Perform the GET request
-          get "/space/123/new_booking/#{@booking_id}"
-        end
-
-      xit "renders a 'Booking Not Found' message" do
-        expect(last_response).to be_ok
-        expect(last_response.body).to include('Booking Not Found')
+    context 'when dates are not available' do
+      before do
+        allow_any_instance_of(Bookings).to receive(:dates_available?).and_return(false)
       end
 
-      xit "creates a new booking and redirects to the booking view" do
-        allow_any_instance_of(Spaces).to receive(:logged_in?).and_return(true)
-
-        post "/space/#{space_id}/new_booking", start_date: '2023-06-10', end_date: '2023-06-12', contents: 'Booking contents', status: 'confirmed'
-
-        expect(BookingRepository).to have_received(:create).with(space_id, session[:user_id], '2023-06-10', '2023-06-12', 'Booking contents', 'confirmed')
+      it 'redirects with error message' do
+        post "/space/#{booking_params[:space_id]}/new_booking", booking_params, { 'rack.session' => { user_id: 1 } }
         expect(last_response).to be_redirect
-        expect(last_response.location).to include("/booking/#{booking_id}")
+        follow_redirect!
+        expect(last_request.path).to eq("/space/#{booking_params[:space_id]}/new_booking")
       end
     end
   end
 
-
-  xdescribe "GET '/booking/:booking_id/delete'" do
-    xcontext "when logged in" do
-      let(:booking_id) { 1 }
-      let(:booking) { double("Booking") }
-
-      before do
-        allow(BookingRepository).to receive(:find).with(booking_id).and_return(booking)
+  describe 'GET /space/:space_id/new_booking/:booking_id' do
+    context 'when user is logged in' do
+      xit 'renders the booking details page' do
+        allow(BookingRepository).to receive(:find).and_return(double('Booking', id: 1, user_id: 1, space_id: 1))
+        get "/space/#{booking_params[:space_id]}/new_booking/1", {}, { 'rack.session' => { user_id: 1 } }
+        expect(last_response.status).to eq(200)
+        expect(last_response.body).to include('Booking Details')
       end
+    end
 
-      xit "renders the delete_booking view" do
-        allow_any_instance_of(Spaces).to receive(:logged_in?).and_return(true)
+    context 'when user is not logged in' do
+      it 'redirects to login page' do
+        get "/space/#{booking_params[:space_id]}/new_booking/1"
+        expect(last_response).to be_redirect
+        follow_redirect!
+        expect(last_request.path).to eq('/login')
+      end
+    end
+  end
 
-        get "/booking/#{booking_id}/delete"
-
-        expect(last_response).to be_ok
+  describe 'GET /space/:space_id/new_booking/:booking_id/delete' do
+    context 'when user is logged in' do
+      it 'renders the delete booking page' do
+        get "/space/#{booking_params[:space_id]}/new_booking/1/delete", {}, { 'rack.session' => { user_id: 1 } }
+        expect(last_response.status).to eq(200)
         expect(last_response.body).to include('Delete Booking')
-        expect(last_response.body).to include('Are you sure you want to delete this booking?')
       end
     end
 
-    context "when not logged in" do
-      xit "redirects to the login page" do
-        allow_any_instance_of(Spaces).to receive(:logged_in?).and_return(false)
-
-        get '/booking/1/delete'
-
+    context 'when user is not logged in' do
+      it 'redirects to login page' do
+        get "/space/#{booking_params[:space_id]}/new_booking/1/delete"
         expect(last_response).to be_redirect
-        expect(last_response.location).to include('/login')
+        follow_redirect!
+        expect(last_request.path).to eq('/login')
       end
     end
   end
 
-  describe "POST '/booking/:booking_id/delete'" do
-    context "when logged in" do
-      let(:booking_id) { 1 }
-      let(:booking) { double("Booking") }
-
-      before do
-        allow(BookingRepository).to receive(:find).with(booking_id).and_return(booking)
-        allow(BookingRepository).to receive(:delete)
-      end
-
-      xit "deletes the booking and redirects to the profile" do
-        allow_any_instance_of(Spaces).to receive(:logged_in?).and_return(true)
-
-        post "/booking/#{booking_id}/delete"
-
-        expect(BookingRepository).to have_received(:delete).with(booking_id)
+  describe 'POST /space/:space_id/new_booking/:booking_id/delete' do
+    context 'when user is logged in' do
+      it 'deletes the booking and redirects to profile' do
+        expect(BookingRepository).to receive(:delete)
+        post "/space/#{booking_params[:space_id]}/new_booking/1/delete", {}, { 'rack.session' => { user_id: 1 } }
         expect(last_response).to be_redirect
-        expect(last_response.location).to include('/profile')
+        follow_redirect!
+        expect(last_request.path).to eq('/profile')
       end
     end
 
-    context "when not logged in" do
-      xit "redirects to the login page" do
-        allow_any_instance_of(Spaces).to receive(:logged_in?).and_return(false)
-
-        post '/booking/1/delete'
-
+    context 'when user is not logged in' do
+      it 'redirects to login page' do
+        post "/space/#{booking_params[:space_id]}/new_booking/1/delete"
         expect(last_response).to be_redirect
-        expect(last_response.location).to include('/login')
+        follow_redirect!
+        expect(last_request.path).to eq('/login')
       end
     end
   end
