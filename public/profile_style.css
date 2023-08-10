@@ -124,7 +124,15 @@ body {
   margin: 20px;
   background-color: #fff;
   border-radius: 5px;
+  transition: all 0.3s ease; /* smooth transition for all changes */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.spaces-box:hover,
+.bookings-box:hover {
+  background-color: #f9f9f9; /* a slightly different shade of white */
+  transform: translateY(-4px); /* gives the effect of elevation */
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
 }
 
 .box-heading {

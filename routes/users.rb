@@ -108,17 +108,22 @@ class Users < Sinatra::Base
   get '/profile/notifications' do
     if logged_in?
       user_id = session[:user_id] 
-    
+  
       notifications = MessageRepository.find_notifications(user_id)
-
-      search = UserRepository.find(notifications[0].sender_id)
-      @sender_name = search.username
-    
+  
+      if notifications.any?
+        search = UserRepository.find(notifications[0].sender_id)
+        @sender_name = search.username
+      else
+        @sender_name = nil
+      end
+  
       erb :notifications, locals: { notifications: notifications }
     else
       redirect '/login'
     end
   end
+  
   
 
   get '/logout' do
