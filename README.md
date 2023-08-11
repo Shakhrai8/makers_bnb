@@ -10,8 +10,9 @@ Please note that MakersBnB is currently in active development and some features 
  <img src="https://img.shields.io/badge/postgresql-%23336791.svg?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
  <img src="https://img.shields.io/badge/bcrypt-%23172F2E.svg?style=for-the-badge&logo=bcrypt&logoColor=white" alt="BCrypt" />
  <img src="https://img.shields.io/badge/rspec-%23C21325.svg?style=for-the-badge&logo=rspec&logoColor=white" alt="RSpec" />
+ <img src="https://img.shields.io/badge/html5-%23E34F26.svg?style=for-the-badge&logo=html5&logoColor=white" alt="HTML5" />
+ <img src="https://img.shields.io/badge/css3-%231572B6.svg?style=for-the-badge&logo=css3&logoColor=white" alt="CSS3" />
 </p>
-
 
 ## Table of Contents
 - [About](#about)
