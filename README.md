@@ -4,6 +4,15 @@
 
 Please note that MakersBnB is currently in active development and some features may not be fully implemented or thoroughly tested. While we strive to ensure a stable and reliable experience, there may still be bugs or unexpected behavior.
 
+<p align="center">
+ <img src="https://img.shields.io/badge/ruby-%23CC342D.svg?style=for-the-badge&logo=ruby&logoColor=white" alt="Ruby" />
+ <img src="https://img.shields.io/badge/sinatra-%23D00000.svg?style=for-the-badge&logo=sinatra&logoColor=white" alt="Sinatra" />
+ <img src="https://img.shields.io/badge/postgresql-%23336791.svg?style=for-the-badge&logo=postgresql&logoColor=white" alt="PostgreSQL" />
+ <img src="https://img.shields.io/badge/bcrypt-%23172F2E.svg?style=for-the-badge&logo=bcrypt&logoColor=white" alt="BCrypt" />
+ <img src="https://img.shields.io/badge/rspec-%23C21325.svg?style=for-the-badge&logo=rspec&logoColor=white" alt="RSpec" />
+</p>
+
+
 ## Table of Contents
 - [About](#about)
 - [Features](#features)
